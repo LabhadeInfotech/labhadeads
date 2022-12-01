@@ -37,15 +37,15 @@ Step 2. Add the dependency
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main);
 
-                LabhadeAds.InitializeAds(this);
+                LabhadeAds.InitializeAds(this); ---> APPLICATION class
 
                 rlBanner = findViewById(com.labhade.adsdk.R.id.rlBanner);
                 rlNative = findViewById(com.labhade.adsdk.R.id.rlNative);
                 tvSpace = findViewById(com.labhade.adsdk.R.id.tvSpace);
                 next = findViewById(R.id.next);
 
-                LabhadeAds.setDefault();
-                LabhadeAds.setTestMode(this);
+                LabhadeAds.setDefault(); ---> SPLASH ONLY
+                LabhadeAds.setTestMode(this); ---> TEST MODE
                 LabhadeAds.showBanner(this,rlBanner);
                 LabhadeAds.showNative(this,rlNative,tvSpace,false);
 
