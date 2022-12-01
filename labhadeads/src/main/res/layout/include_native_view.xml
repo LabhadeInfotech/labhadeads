@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="10dp"
+    android:paddingHorizontal="5dp">
+
+    <TextView
+        android:id="@+id/tvSpace"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/ads_space"
+        android:gravity="center"
+        android:text="Advertisement"
+        android:textColor="?attr/colorAccent"
+        android:textSize="16dp" />
+
+    <RelativeLayout
+        android:id="@+id/rlNative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
