@@ -37,7 +37,7 @@ public class InterstitialUtils {
         myPref = new AdsAccountProvider(mContext);
 
         InterstitialAd.load(mContext, mUnitId = myPref.getInterAds1()
-                , new AdRequest.Builder().build(), new InterstitialAdLoadCallback() {
+                ,new AdRequest.Builder().build(), new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         super.onAdFailedToLoad(loadAdError);

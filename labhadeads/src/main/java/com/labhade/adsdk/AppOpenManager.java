@@ -42,8 +42,7 @@ public class AppOpenManager  implements LifecycleObserver, Application.ActivityL
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
-       if ((Constants.isAdShowing)
-               && !adsAccountProvider.isAppOpenEnabled()) {
+       if (Constants.isAdShowing || !adsAccountProvider.isAppOpenEnabled()) {
            return;
        }
         showAdIfAvailable();

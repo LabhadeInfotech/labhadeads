@@ -1,5 +1,6 @@
 package com.labhade.adsdk.adUtils;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 
@@ -9,6 +10,8 @@ import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.labhade.adsdk.AdProgressDialog;
@@ -36,12 +39,21 @@ public class RewardedUtils {
 
                     @Override
                     public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
-                       showRewarded(rewardedAd,rewardInterface);
+                       showRewarded(context,rewardedAd,rewardInterface);
                     }
                 });
     }
 
-    public static void showRewarded(RewardedAd rewardedAd,Interstitial rewardCallback) {
+    public static void showRewarded(Context context,RewardedAd rewardedAd,Interstitial rewardCallback) {
+
+        rewardedAd.show((Activity) context, new OnUserEarnedRewardListener() {
+            @Override
+            public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+
+            }
+        });
+
+
         rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
             @Override
             public void onAdClicked() {
@@ -54,7 +66,7 @@ public class RewardedUtils {
 
             @Override
             public void onAdFailedToShowFullScreenContent(AdError adError) {
-                showRewarded(rewardedAd,rewardCallback);
+                showRewarded(context,rewardedAd,rewardCallback);
             }
 
             @Override
