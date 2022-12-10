@@ -21,6 +21,7 @@ public  class Constants {
     public static final String KEY_FB_BANNER = "key_banner_fb_ads";
     public static final String KEY_FB_NATIVE = "key_native_fb_ads";
     public static final String KEY_FB_INTER = "key_inter_fb_ads";
+    public static final String KEY_BACK_PRESS = "key_backpress_ads";
     public static  boolean isAdShowing = false;
     public static  boolean isSplash = true;
 

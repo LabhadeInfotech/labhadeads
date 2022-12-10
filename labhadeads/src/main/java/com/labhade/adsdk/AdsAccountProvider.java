@@ -138,4 +138,12 @@ public class AdsAccountProvider {
 
     }
 
+    public void setBackAds(boolean isEnable) {
+        sharedPreferences.edit().putBoolean( Constants.KEY_BACK_PRESS, isEnable ).apply();
+    }
+
+    public boolean isBackAdsEnable() {
+        return sharedPreferences.getBoolean( Constants.KEY_BACK_PRESS, false);
+
+    }
 }

@@ -30,7 +30,7 @@ public class AppOpenManager  implements LifecycleObserver, Application.ActivityL
 
     private Application myApplication;
 
-    private Activity currentActivity;
+    private Activity currentActivity,lastActivity;
 
     public AppOpenManager(Application myApplication, String adId) {
         AD_UNIT_ID = adId;
@@ -42,15 +42,13 @@ public class AppOpenManager  implements LifecycleObserver, Application.ActivityL
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
-       if (Constants.isAdShowing || !adsAccountProvider.isAppOpenEnabled()) {
+       if (Constants.isAdShowing || !adsAccountProvider.isAppOpenEnabled() || currentActivity == lastActivity) {
            return;
        }
+       currentActivity = lastActivity;
         showAdIfAvailable();
     }
 
-    /**
-     * Request an ad
-     */
     public void fetchAd() {
 
         if (isAdAvailable()) {
@@ -160,6 +158,5 @@ public class AppOpenManager  implements LifecycleObserver, Application.ActivityL
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
         currentActivity = null;
-
     }
 }

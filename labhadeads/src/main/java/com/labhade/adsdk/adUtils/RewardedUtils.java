@@ -3,6 +3,7 @@ package com.labhade.adsdk.adUtils;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -49,7 +50,8 @@ public class RewardedUtils {
         rewardedAd.show((Activity) context, new OnUserEarnedRewardListener() {
             @Override
             public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-
+                Toast.makeText(context, "Thank you for support with "+rewardItem.getAmount()
+                        + "and "+rewardItem.getType(), Toast.LENGTH_SHORT).show();
             }
         });
 
