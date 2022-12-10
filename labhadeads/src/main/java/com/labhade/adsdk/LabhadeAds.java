@@ -1,5 +1,6 @@
 package com.labhade.adsdk;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -36,16 +37,16 @@ public class LabhadeAds {
     public static void setTestMode(Context context) {
         AdsAccountProvider adsAccountProvider = new AdsAccountProvider(context);
 
+        adsAccountProvider.setAdsType("admob");
         adsAccountProvider.setBannerAds1("/6499/example/banner");
         adsAccountProvider.setInterAds1("/6499/example/interstitial");
         adsAccountProvider.setRewardAds1("/6499/example/rewarded");
+        adsAccountProvider.setNativeAds1("/6499/example/native");
+        adsAccountProvider.setOpenAds("/6499/example/app-open");
         adsAccountProvider.setAppOpenEnable(true);
         adsAccountProvider.setRewardEnable(true);
-        adsAccountProvider.setInterAds1("/6499/example/interstitial");
-        adsAccountProvider.setNativeAds1("/6499/example/native");
         adsAccountProvider.setAdsTime(1);
-        adsAccountProvider.setOpenAds("/6499/example/app-open");
-        adsAccountProvider.setAdsType("admob");
+        adsAccountProvider.setBackAds(true);
     }
 
 
@@ -126,5 +127,23 @@ public class LabhadeAds {
             }
         },1500);
         return false;
+    }
+
+    public static void onBackPressed(Context context, Interstitial listener) {
+
+        if (isClicked()) {
+            return;
+        }
+
+        AdsAccountProvider myPref = new AdsAccountProvider(context);
+
+        if (myPref.getAdsType().equals("admob") && myPref.isBackAdsEnable()) {
+            InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
+            interstitialUtils.show_interstitial(Constants.interAdmob);
+        } else if (myPref.getAdsType().equals("facebook") &&  myPref.isBackAdsEnable()) {
+            InterstitialUtilsFb.loadInterstitial(context,listener);
+        } else {
+            ((Activity) context).finish();
+        }
     }
 }

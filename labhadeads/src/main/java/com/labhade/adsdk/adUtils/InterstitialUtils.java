@@ -54,9 +54,6 @@ public class InterstitialUtils {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         super.onAdLoaded(interstitialAd);
-                        if (dialog != null && dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
                         Constants.setCountDown();
                         if (isFailed) {
                             show_interstitial(interstitialAd);
@@ -72,10 +69,6 @@ public class InterstitialUtils {
     public void show_interstitial(InterstitialAd mInterstitialAd) {
 
         if (Constants.isTimeFinish) {
-
-            if (dialog == null) {
-                dialog = AdProgressDialog.show(mContext);
-            }
 
             if (mInterstitialAd != null) {
 
