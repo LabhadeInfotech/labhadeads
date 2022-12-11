@@ -15,6 +15,7 @@ import com.labhade.adsdk.adUtils.BannerUtilsFb;
 import com.labhade.adsdk.adUtils.InterstitialUtils;
 import com.labhade.adsdk.adUtils.InterstitialUtilsFb;
 import com.labhade.adsdk.adUtils.NativeUtils;
+import com.labhade.adsdk.adUtils.NativeUtils50;
 import com.labhade.adsdk.adUtils.NativeUtilsFb;
 import com.labhade.adsdk.adUtils.RewardedUtils;
 import com.labhade.adsdk.aditerface.Interstitial;
@@ -114,6 +115,15 @@ public class LabhadeAds {
             NativeUtilsFb.showNativeFb(context, nativeContainer, space,isBigNative);
         }
     }
+
+    public static void showNative50(Context context, RelativeLayout nativeContainer, View space) {
+        AdsAccountProvider myPref = new AdsAccountProvider(context);
+
+        if (myPref.getAdsType().equals("admob")) {
+            NativeUtils50.showNative(context, nativeContainer,space);
+        }
+    }
+
 
     public static boolean isClicked() {
         if (isClicked) {
