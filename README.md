@@ -16,7 +16,7 @@ Step 2. Add the dependency
 
         dependencies {
                   implementation 'com.github.LabhadeInfotech:labhadeads:1.0.1'
-          }       
+                  }       
           
           
  ============= Themes ==============
