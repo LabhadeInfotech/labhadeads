@@ -12,7 +12,7 @@ import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
 import com.labhade.adsdk.AdProgressDialog;
 import com.labhade.adsdk.AdsAccountProvider;
-import com.labhade.adsdk.Constants;
+import com.labhade.adsdk.AdConstants;
 import com.labhade.adsdk.LabhadeAds;
 import com.labhade.adsdk.aditerface.Interstitial;
 
@@ -24,7 +24,7 @@ public class InterstitialUtilsFb {
         AdsAccountProvider accountProvider = new AdsAccountProvider(mContext);
 
         if (LabhadeAds.isConnectingToInternet(mContext)) {
-            if (Constants.isTimeFinish) {
+            if (AdConstants.isTimeFinish) {
 
                 Dialog dialog = AdProgressDialog.show(mContext);
                 InterstitialAd interstitialAd = new InterstitialAd(mContext,accountProvider.getFbInterAds());
@@ -32,18 +32,18 @@ public class InterstitialUtilsFb {
                 InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
                     @Override
                     public void onInterstitialDisplayed(Ad ad) {
-                        Constants.isAdShowing = true;
+                        AdConstants.isAdShowing = true;
                     }
 
                     @Override
                     public void onInterstitialDismissed(Ad ad) {
                         listener.onAdClose(false);
-                        Constants.isTimeFinish = false;
-                        Constants.isAdShowing = false;
+                        AdConstants.isTimeFinish = false;
+                        AdConstants.isAdShowing = false;
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                Constants.isTimeFinish = true;
+                                AdConstants.isTimeFinish = true;
                             }
                         },accountProvider.getAdsTime() * 1000);
                     }

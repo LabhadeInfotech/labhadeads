@@ -14,9 +14,8 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-import com.labhade.adsdk.AdProgressDialog;
 import com.labhade.adsdk.AdsAccountProvider;
-import com.labhade.adsdk.Constants;
+import com.labhade.adsdk.AdConstants;
 import com.labhade.adsdk.LabhadeAds;
 import com.labhade.adsdk.aditerface.Interstitial;
 
@@ -54,11 +53,11 @@ public class InterstitialUtils {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         super.onAdLoaded(interstitialAd);
-                        Constants.setCountDown();
+                        AdConstants.setCountDown();
                         if (isFailed) {
                             show_interstitial(interstitialAd);
                         } else {
-                            Constants.interAdmob = interstitialAd;
+                            AdConstants.interAdmob = interstitialAd;
                         }
                     }
                 });
@@ -68,7 +67,7 @@ public class InterstitialUtils {
 
     public void show_interstitial(InterstitialAd mInterstitialAd) {
 
-        if (Constants.isTimeFinish) {
+        if (AdConstants.isTimeFinish) {
 
             if (mInterstitialAd != null) {
 
@@ -82,12 +81,12 @@ public class InterstitialUtils {
                     @Override
                     public void onAdShowedFullScreenContent() {
                         super.onAdShowedFullScreenContent();
-                        Constants.isSplash = false;
+                        AdConstants.isSplash = false;
                         if (dialog != null && dialog.isShowing()) {
                             dialog.dismiss();
                         }
-                        Constants.isAdShowing = true;
-                        Constants.dismissCount();
+                        AdConstants.isAdShowing = true;
+                        AdConstants.dismissCount();
                         load_interstitial(false);
 
                     }
@@ -95,12 +94,12 @@ public class InterstitialUtils {
                     @Override
                     public void onAdDismissedFullScreenContent() {
                         super.onAdDismissedFullScreenContent();
-                        Constants.isTimeFinish = false;
-                        Constants.isAdShowing = false;
+                        AdConstants.isTimeFinish = false;
+                        AdConstants.isAdShowing = false;
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                Constants.isTimeFinish = true;
+                                AdConstants.isTimeFinish = true;
                             }
                         }, myPref.getAdsTime() * 1000);
                         listener.onAdClose(true);

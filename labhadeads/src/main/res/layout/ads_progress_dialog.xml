@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="#ffffff"
         app:cardCornerRadius="10dp">
 
         <FrameLayout
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|bottom"
                 android:layout_marginBottom="24dp"
-                android:text="AD Loading..."
+                android:text="Loading..."
                 android:textColor="?attr/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />

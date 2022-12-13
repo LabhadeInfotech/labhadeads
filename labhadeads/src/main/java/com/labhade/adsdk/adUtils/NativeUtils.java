@@ -19,7 +19,7 @@ import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
 import com.labhade.adsdk.AdsAccountProvider;
-import com.labhade.adsdk.Constants;
+import com.labhade.adsdk.AdConstants;
 import com.labhade.adsdk.R;
 
 public class NativeUtils {
@@ -35,8 +35,8 @@ public class NativeUtils {
             @Override
             public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
                                                 // && !(context instanceof MainActivity)
-                if (!Constants.isPreloadedNative) {
-                    Constants.isPreloadedNative = true;
+                if (!AdConstants.isPreloadedNative) {
+                    AdConstants.isPreloadedNative = true;
 
                     try {
                         if (rlNative.getChildCount() > 0) {
@@ -62,7 +62,7 @@ public class NativeUtils {
 
                     load_native(context, rlNative, space, isBigNative);
                 } else {
-                    Constants.nativeAds = nativeAd;
+                    AdConstants.nativeAds = nativeAd;
                 }
             }
         }).withAdListener(new AdListener() {
@@ -74,7 +74,7 @@ public class NativeUtils {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
-                Constants.nativeAds = null;
+                AdConstants.nativeAds = null;
                 try {
                     space.setVisibility(View.VISIBLE);
                     rlNative.setVisibility(View.GONE);
@@ -91,7 +91,7 @@ public class NativeUtils {
 
     public static void showNative(Context context,RelativeLayout rlNative, View space,boolean isBigNative) {
 
-        if (Constants.nativeAds != null) {
+        if (AdConstants.nativeAds != null) {
 
             try {
                 if (rlNative.getChildCount() > 0) {
@@ -101,10 +101,10 @@ public class NativeUtils {
                 View view;
                 if (isBigNative) {
                     view = LayoutInflater.from(context).inflate(R.layout.ad_300, null);
-                    populate300AppInstallAdViewMedia(Constants.nativeAds, (NativeAdView) view.findViewById(R.id.unified));
+                    populate300AppInstallAdViewMedia(AdConstants.nativeAds, (NativeAdView) view.findViewById(R.id.unified));
                 } else {
                     view = LayoutInflater.from(context).inflate(R.layout.ad_100, null);
-                    populateAppInstallAdViewMedia(Constants.nativeAds, (NativeAdView) view.findViewById(R.id.unified));
+                    populateAppInstallAdViewMedia(AdConstants.nativeAds, (NativeAdView) view.findViewById(R.id.unified));
                 }
                 space.setVisibility(View.GONE);
                 rlNative.setVisibility(View.VISIBLE);
@@ -115,7 +115,7 @@ public class NativeUtils {
             }
             load_native(context,rlNative,space,isBigNative);
         } else {
-            Constants.isPreloadedNative = false;
+            AdConstants.isPreloadedNative = false;
             load_native(context,rlNative,space,isBigNative);
         }
 

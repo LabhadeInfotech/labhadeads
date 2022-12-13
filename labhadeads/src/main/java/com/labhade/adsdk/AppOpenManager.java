@@ -42,7 +42,7 @@ public class AppOpenManager  implements LifecycleObserver, Application.ActivityL
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
-       if (Constants.isAdShowing || !adsAccountProvider.isAppOpenEnabled() || currentActivity == lastActivity) {
+       if (AdConstants.isAdShowing || !adsAccountProvider.isAppOpenEnabled() || currentActivity == lastActivity) {
            return;
        }
        currentActivity = lastActivity;

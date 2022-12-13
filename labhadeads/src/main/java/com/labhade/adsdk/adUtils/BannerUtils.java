@@ -1,7 +1,6 @@
 package com.labhade.adsdk.adUtils;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,7 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.labhade.adsdk.AdsAccountProvider;
-import com.labhade.adsdk.Constants;
+import com.labhade.adsdk.AdConstants;
 
 
 public class BannerUtils {
@@ -20,13 +19,13 @@ public class BannerUtils {
 
     public static void show_banner(Context context, RelativeLayout bannerView) {
 
-        if (Constants.adView != null) {
+        if (AdConstants.adView != null) {
             try {
                 if (bannerView.getChildCount() > 0) {
                     bannerView.removeAllViews();
                 }
 
-                bannerView.addView(Constants.adView);
+                bannerView.addView(AdConstants.adView);
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -47,7 +46,7 @@ public class BannerUtils {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
-                Constants.adView = null;
+                AdConstants.adView = null;
                 load_ads(context, bannerView,true);
             }
 
@@ -65,10 +64,10 @@ public class BannerUtils {
                         e.printStackTrace();
                     }
 
-                    Constants.adView = adView;
+                    AdConstants.adView = adView;
                     load_ads(context, bannerView,false);
                 } else {
-                    Constants.adView = adView;
+                    AdConstants.adView = adView;
                 }
             }
         });

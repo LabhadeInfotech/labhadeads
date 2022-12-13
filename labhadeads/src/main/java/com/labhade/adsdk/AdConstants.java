@@ -6,7 +6,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.nativead.NativeAd;
 
-public  class Constants {
+public  class AdConstants {
     public static boolean isTimeFinish = true;
 
     public static final String KEY_OPEN_ADS = "key_open_ads";
@@ -43,7 +43,7 @@ public  class Constants {
             public void onTick(long millisUntilFinished) {}
 
             public void onFinish() {
-                Constants.interAdmob = null;
+                AdConstants.interAdmob = null;
                 mCountTimer.cancel();
                 mCountTimer = null;
             }

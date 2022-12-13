@@ -15,6 +15,7 @@ import com.labhade.adsdk.adUtils.BannerUtilsFb;
 import com.labhade.adsdk.adUtils.InterstitialUtils;
 import com.labhade.adsdk.adUtils.InterstitialUtilsFb;
 import com.labhade.adsdk.adUtils.NativeUtils;
+import com.labhade.adsdk.adUtils.NativeUtils40;
 import com.labhade.adsdk.adUtils.NativeUtils50;
 import com.labhade.adsdk.adUtils.NativeUtilsFb;
 import com.labhade.adsdk.adUtils.RewardedUtils;
@@ -23,6 +24,14 @@ import com.labhade.adsdk.aditerface.Interstitial;
 
 public class LabhadeAds {
    public static boolean  isClicked = false;
+
+    public enum AdTemplate {
+        NATIVE_300,
+        NATIVE_100,
+        NATIVE_50,
+        NATIVE_40
+    }
+
 
     public  static boolean isConnectingToInternet(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -52,14 +61,14 @@ public class LabhadeAds {
 
 
     public static void setDefault() {
-        Constants.isPreloadedNative = false;
-        Constants.isPreloadedFbNative = false;
-        Constants.nativeAds = null;
-        Constants.adView = null;
-        Constants.adViewFb = null;
-        Constants.nativeAdFb = null;
-        Constants.interAdmob = null;
-        Constants.interFb = null;
+        AdConstants.isPreloadedNative = false;
+        AdConstants.isPreloadedFbNative = false;
+        AdConstants.nativeAds = null;
+        AdConstants.adView = null;
+        AdConstants.adViewFb = null;
+        AdConstants.nativeAdFb = null;
+        AdConstants.interAdmob = null;
+        AdConstants.interFb = null;
     }
 
     public static void showInterstitial(Context context, Interstitial listener) {
@@ -72,7 +81,7 @@ public class LabhadeAds {
 
         if (myPref.getAdsType().equals("admob")) {
             InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
-            interstitialUtils.show_interstitial(Constants.interAdmob);
+            interstitialUtils.show_interstitial(AdConstants.interAdmob);
         } else if ((myPref.getAdsType().equals("facebook"))) {
             InterstitialUtilsFb.loadInterstitial(context,listener);
         } else {
@@ -89,7 +98,7 @@ public class LabhadeAds {
 
         if (myPref.getAdsType().equals("admob") && myPref.isRewardEnabled()) {
             RewardedUtils.loadRewarded(context,callback);
-        } else if (myPref.getAdsType().equals("admob") && !myPref.isRewardEnabled()) {
+        } else if (myPref.getAdsType().equals("admob")) {
             showInterstitial(context,callback);
         } else {
             callback.onAdClose(false);
@@ -106,21 +115,25 @@ public class LabhadeAds {
         }
     }
 
-    public static void showNative(Context context, RelativeLayout nativeContainer, View space, boolean isBigNative) {
+    public static void showNative(Context context, RelativeLayout nativeContainer, View space, AdTemplate adTemplate) {
         AdsAccountProvider myPref = new AdsAccountProvider(context);
 
         if (myPref.getAdsType().equals("admob")) {
-            NativeUtils.showNative(context, nativeContainer,space,isBigNative);
+            if (adTemplate.equals(AdTemplate.NATIVE_300)) {
+                NativeUtils.showNative(context, nativeContainer, space, true);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_100)){
+                NativeUtils.showNative(context, nativeContainer, space, false);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_50)){
+                NativeUtils50.showNative(context, nativeContainer, space);
+            } else {
+                NativeUtils40.showNative(context, nativeContainer, space);
+            }
         } else if (myPref.getAdsType().equals("facebook")) {
-            NativeUtilsFb.showNativeFb(context, nativeContainer, space,isBigNative);
-        }
-    }
-
-    public static void showNative50(Context context, RelativeLayout nativeContainer, View space) {
-        AdsAccountProvider myPref = new AdsAccountProvider(context);
-
-        if (myPref.getAdsType().equals("admob")) {
-            NativeUtils50.showNative(context, nativeContainer,space);
+            if (adTemplate.equals(AdTemplate.NATIVE_300)) {
+                 NativeUtilsFb.showNativeFb(context, nativeContainer, space, true);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_100)){
+                 NativeUtilsFb.showNativeFb(context, nativeContainer, space, false);
+            }
         }
     }
 
@@ -149,7 +162,7 @@ public class LabhadeAds {
 
         if (myPref.getAdsType().equals("admob") && myPref.isBackAdsEnable()) {
             InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
-            interstitialUtils.show_interstitial(Constants.interAdmob);
+            interstitialUtils.show_interstitial(AdConstants.interAdmob);
         } else if (myPref.getAdsType().equals("facebook") &&  myPref.isBackAdsEnable()) {
             InterstitialUtilsFb.loadInterstitial(context,listener);
         } else {

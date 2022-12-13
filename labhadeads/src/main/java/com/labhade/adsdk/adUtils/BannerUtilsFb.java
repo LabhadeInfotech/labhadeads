@@ -10,19 +10,19 @@ import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.labhade.adsdk.AdsAccountProvider;
-import com.labhade.adsdk.Constants;
+import com.labhade.adsdk.AdConstants;
 
 public class BannerUtilsFb {
 
     public static void show_banner(Context context, RelativeLayout bannerView) {
 
-        if (Constants.adViewFb != null) {
+        if (AdConstants.adViewFb != null) {
             try {
                 if (bannerView.getChildCount() > 0) {
                     bannerView.removeAllViews();
                 }
 
-                bannerView.addView(Constants.adViewFb);
+                bannerView.addView(AdConstants.adViewFb);
             } catch (Exception e ) {
                 e.printStackTrace();
             }
@@ -43,14 +43,14 @@ public class BannerUtilsFb {
             @Override
             public void onError(Ad ad, AdError adError) {
                 Log.e("BANNER_ERROR-->",adError.getErrorMessage());
-                Constants.adViewFb = null;
+                AdConstants.adViewFb = null;
                 loadFbBanner(context,adContainer,true);
             }
 
             @Override
             public void onAdLoaded(Ad ad) {
                 if (isFailed) {
-                    Constants.adViewFb = adView;
+                    AdConstants.adViewFb = adView;
                     try {
                         if (adContainer.getChildCount() > 0) {
                             adContainer.removeAllViews();
@@ -63,7 +63,7 @@ public class BannerUtilsFb {
 
                     loadFbBanner(context, adContainer,false);
                 } else {
-                    Constants.adViewFb = adView;
+                    AdConstants.adViewFb = adView;
                 }
             }
 
