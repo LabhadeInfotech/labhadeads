@@ -22,6 +22,7 @@ public  class AdConstants {
     public static final String KEY_FB_NATIVE = "key_native_fb_ads";
     public static final String KEY_FB_INTER = "key_inter_fb_ads";
     public static final String KEY_BACK_PRESS = "key_backpress_ads";
+    public static final String KEY_INTER_ENABLE = "key_inter_enable";
     public static  boolean isAdShowing = false;
     public static  boolean isSplash = true;
 

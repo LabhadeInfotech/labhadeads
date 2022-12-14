@@ -146,4 +146,13 @@ public class AdsAccountProvider {
         return sharedPreferences.getBoolean( AdConstants.KEY_BACK_PRESS, false);
 
     }
+
+    public void setInterEnable(boolean isEnable) {
+        sharedPreferences.edit().putBoolean( AdConstants.KEY_INTER_ENABLE, isEnable ).apply();
+    }
+
+    public boolean isInterEnable() {
+        return sharedPreferences.getBoolean( AdConstants.KEY_INTER_ENABLE, true);
+
+    }
 }

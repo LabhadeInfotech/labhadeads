@@ -55,6 +55,7 @@ public class LabhadeAds {
         adsAccountProvider.setOpenAds("/6499/example/app-open");
         adsAccountProvider.setAppOpenEnable(true);
         adsAccountProvider.setRewardEnable(true);
+        adsAccountProvider.setInterEnable(true);
         adsAccountProvider.setAdsTime(1);
         adsAccountProvider.setBackAds(true);
     }
@@ -79,10 +80,10 @@ public class LabhadeAds {
 
         AdsAccountProvider myPref = new AdsAccountProvider(context);
 
-        if (myPref.getAdsType().equals("admob")) {
+        if (myPref.getAdsType().equals("admob") && myPref.isInterEnable()) {
             InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
             interstitialUtils.show_interstitial(AdConstants.interAdmob);
-        } else if ((myPref.getAdsType().equals("facebook"))) {
+        } else if ((myPref.getAdsType().equals("facebook")) && myPref.isInterEnable()) {
             InterstitialUtilsFb.loadInterstitial(context,listener);
         } else {
             listener.onAdClose(false);

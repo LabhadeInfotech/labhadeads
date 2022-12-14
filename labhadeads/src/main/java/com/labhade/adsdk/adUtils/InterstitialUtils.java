@@ -43,6 +43,14 @@ public class InterstitialUtils {
                         if (dialog != null && dialog.isShowing()) {
                             dialog.dismiss();
                         }
+                        AdConstants.isTimeFinish = false;
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                AdConstants.isTimeFinish = true;
+                            }
+                        }, myPref.getAdsTime() * 1000);
+                        listener.onAdClose(true);
                         if (LabhadeAds.isConnectingToInternet(mContext)) {
                             listener.onAdClose(true);
                         } else {
@@ -111,8 +119,8 @@ public class InterstitialUtils {
                         if (dialog != null && dialog.isShowing()) {
                             dialog.dismiss();
                         }
-                        show_interstitial(mInterstitialAd);
-//                listener.onAdClose(true);
+//                        show_interstitial(mInterstitialAd);
+                        listener.onAdClose(true);
                     }
                 });
             } else {
