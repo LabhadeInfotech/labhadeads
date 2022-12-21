@@ -78,16 +78,22 @@ public class LabhadeAds {
             return;
         }
 
-        AdsAccountProvider myPref = new AdsAccountProvider(context);
+        if (AdConstants.isTimeFinish) {
+            AdsAccountProvider myPref = new AdsAccountProvider(context);
 
-        if (myPref.getAdsType().equals("admob") && myPref.isInterEnable()) {
-            InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
-            interstitialUtils.show_interstitial(AdConstants.interAdmob);
-        } else if ((myPref.getAdsType().equals("facebook")) && myPref.isInterEnable()) {
-            InterstitialUtilsFb.loadInterstitial(context,listener);
+            if (myPref.getAdsType().equals("admob") && myPref.isInterEnable()) {
+                InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
+                interstitialUtils.show_interstitial(AdConstants.interAdmob);
+            } else if ((myPref.getAdsType().equals("facebook")) && myPref.isInterEnable()) {
+                InterstitialUtilsFb.loadInterstitial(context,listener);
+            } else {
+                listener.onAdClose(false);
+            }
         } else {
-            listener.onAdClose(false);
+            listener.onAdClose(true);
         }
+
+
     }
 
     public static void showRewardAd(Context context, Interstitial callback) {
@@ -135,6 +141,9 @@ public class LabhadeAds {
             } else if (adTemplate.equals(AdTemplate.NATIVE_100)){
                  NativeUtilsFb.showNativeFb(context, nativeContainer, space, false);
             }
+        } else {
+            nativeContainer.setVisibility(View.GONE);
+            space.setVisibility(View.GONE);
         }
     }
 
@@ -159,15 +168,21 @@ public class LabhadeAds {
             return;
         }
 
-        AdsAccountProvider myPref = new AdsAccountProvider(context);
+        if (AdConstants.isTimeFinish) {
+            AdsAccountProvider myPref = new AdsAccountProvider(context);
 
-        if (myPref.getAdsType().equals("admob") && myPref.isBackAdsEnable()) {
-            InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
-            interstitialUtils.show_interstitial(AdConstants.interAdmob);
-        } else if (myPref.getAdsType().equals("facebook") &&  myPref.isBackAdsEnable()) {
-            InterstitialUtilsFb.loadInterstitial(context,listener);
+            if (myPref.getAdsType().equals("admob") && myPref.isBackAdsEnable()) {
+                InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
+                interstitialUtils.show_interstitial(AdConstants.interAdmob);
+            } else if (myPref.getAdsType().equals("facebook") &&  myPref.isBackAdsEnable()) {
+                InterstitialUtilsFb.loadInterstitial(context,listener);
+            } else {
+                ((Activity) context).finish();
+            }
         } else {
-            ((Activity) context).finish();
+            listener.onAdClose(true);
         }
+
+
     }
 }

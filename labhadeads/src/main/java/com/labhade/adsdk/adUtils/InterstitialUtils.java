@@ -50,12 +50,15 @@ public class InterstitialUtils {
                                 AdConstants.isTimeFinish = true;
                             }
                         }, myPref.getAdsTime() * 1000);
-                        listener.onAdClose(true);
-                        if (LabhadeAds.isConnectingToInternet(mContext)) {
-                            listener.onAdClose(true);
-                        } else {
-                            Toast.makeText(mContext, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+
+                        if (isFailed) {
+                            if (LabhadeAds.isConnectingToInternet(mContext)) {
+                                listener.onAdClose(true);
+                            } else {
+                                Toast.makeText(mContext, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+                            }
                         }
+
                     }
 
                     @Override
@@ -75,59 +78,53 @@ public class InterstitialUtils {
 
     public void show_interstitial(InterstitialAd mInterstitialAd) {
 
-        if (AdConstants.isTimeFinish) {
+        if (mInterstitialAd != null) {
 
-            if (mInterstitialAd != null) {
+            mInterstitialAd.show((Activity) mContext);
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdClicked() {
+                    super.onAdClicked();
+                }
 
-                mInterstitialAd.show((Activity) mContext);
-                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                    @Override
-                    public void onAdClicked() {
-                        super.onAdClicked();
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    AdConstants.isSplash = false;
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
                     }
+                    AdConstants.isAdShowing = true;
+                    AdConstants.dismissCount();
+                    load_interstitial(false);
+                    super.onAdShowedFullScreenContent();
+                }
 
-                    @Override
-                    public void onAdShowedFullScreenContent() {
-                        super.onAdShowedFullScreenContent();
-                        AdConstants.isSplash = false;
-                        if (dialog != null && dialog.isShowing()) {
-                            dialog.dismiss();
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    AdConstants.isTimeFinish = false;
+                    AdConstants.isAdShowing = false;
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            AdConstants.isTimeFinish = true;
                         }
-                        AdConstants.isAdShowing = true;
-                        AdConstants.dismissCount();
-                        load_interstitial(false);
+                    }, myPref.getAdsTime() * 1000);
+                    listener.onAdClose(true);
+                    super.onAdDismissedFullScreenContent();
+                }
 
+                @Override
+                public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                    super.onAdFailedToShowFullScreenContent(adError);
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
                     }
-
-                    @Override
-                    public void onAdDismissedFullScreenContent() {
-                        super.onAdDismissedFullScreenContent();
-                        AdConstants.isTimeFinish = false;
-                        AdConstants.isAdShowing = false;
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                AdConstants.isTimeFinish = true;
-                            }
-                        }, myPref.getAdsTime() * 1000);
-                        listener.onAdClose(true);
-                    }
-
-                    @Override
-                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-                        super.onAdFailedToShowFullScreenContent(adError);
-                        if (dialog != null && dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
 //                        show_interstitial(mInterstitialAd);
-                        listener.onAdClose(true);
-                    }
-                });
-            } else {
-                load_interstitial(true);
-            }
+                    listener.onAdClose(true);
+                }
+            });
         } else {
-            listener.onAdClose(true);
+            load_interstitial(true);
         }
     }
 }
