@@ -2,12 +2,13 @@
 <com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/unified"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="75dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/button_bg"
+        android:gravity="center"
         android:backgroundTint="#F6F4F4"
         android:orientation="horizontal">
 
@@ -22,6 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp">
 
