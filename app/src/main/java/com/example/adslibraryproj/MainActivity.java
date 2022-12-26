@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         LabhadeAds.setDefault();
         LabhadeAds.setTestMode(this);
         LabhadeAds.showBanner(this,rlBanner);
-        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_40);
+        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_50);
 
         next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {}));
     }

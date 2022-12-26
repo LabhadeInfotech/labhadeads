@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/button_bg"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="#ffffff"
     android:orientation="vertical"
     android:layoutDirection="ltr">
 

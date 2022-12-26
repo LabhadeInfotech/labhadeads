@@ -3,8 +3,6 @@ package com.labhade.adsdk;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-
-
 public class AdsAccountProvider {
 
     Context context;
@@ -15,16 +13,6 @@ public class AdsAccountProvider {
         this.context = context;
         sharedPreferences = context.getSharedPreferences("myPref", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-    }
-
-    public void setFirstTime() {
-        editor.putBoolean("isFirstTime", false);
-        editor.commit();
-        editor.apply();
-    }
-
-    public boolean isFirstTime() {
-        return sharedPreferences.getBoolean("isFirstTime", true);
     }
 
     public void setOpenAds(String user) {

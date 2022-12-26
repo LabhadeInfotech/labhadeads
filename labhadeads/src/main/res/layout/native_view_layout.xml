@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/button_bg"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="#ffffff"
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/black"
+                android:textColor="#000000"
                 android:textSize="15sp" />
 
             <TextView
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/black"
+                android:textColor="#000000"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/black"
+                android:textColor="#000000"
                 android:textSize="12sp" />
 
             <TextView
@@ -91,7 +91,7 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:lines="2"
-                android:textColor="@color/black"
+                android:textColor="#000000"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -105,7 +105,7 @@
             android:backgroundTint="?attr/colorAccent"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            android:textColor="@color/white"
+            android:textColor="#ffffff"
             android:textSize="12sp"
             android:visibility="visible" />
 

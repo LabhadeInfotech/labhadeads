@@ -1,180 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.gms.ads.nativead.NativeAdView
+<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:layout_centerInParent="true"
     android:id="@+id/native_ad_view"
-    android:background = "@drawable/button_bg"
-    android:backgroundTint = "#FFFFFF">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical"
+    android:padding="5dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ad_cv"
         android:layout_width="match_parent"
-        android:layout_centerInParent="true"
-        android:background="@drawable/button_bg"
-        android:backgroundTint="#ffffff"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintDimensionRatio="H,4:1.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="horizontal"
-            android:id="@+id/background">
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        app:cardBackgroundColor="#F6F4F4"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true">
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_weight="0"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@+id/content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="vertical"
-                android:id="@+id/content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:id="@+id/headline"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    app:layout_constraintBottom_toTopOf="@+id/row_two"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <TextView
+                    android:id="@+id/id_ad_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ad_text_background"
+                    android:gravity="center"
+                    android:paddingStart="4dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="1dp"
+                    android:text="AD"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:background="#ffffff">
-
-                    <TextView
-                        android:id="@+id/primary"
-                        android:textStyle="bold"
-                        android:textSize="10dp"
-                        android:textColor="#000000"
-                        android:lines="1"
-                        android:layout_weight="1"
-                        android:layout_height="0dp"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginBottom="0dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginEnd="0dp"/>
-
-                    <TextView
-                        android:id="@+id/body"
-                        android:textStyle="bold"
-                        android:textSize="8dp"
-                        android:layout_weight="1"
-                        android:textColor="@android:color/darker_gray"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:layout_height="0dp"
-                        android:layout_width="match_parent" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/row_two"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    app:layout_constraintBottom_toTopOf="@+id/cta"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/headline">
-                    <TextView
-                        android:background="@drawable/button_bg"
-                        android:layout_width="wrap_content"
-                        android:paddingHorizontal="5dp"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:id="@+id/ad_notification_view"
-                        android:layout_height="20dp"
-                        android:text="Ad"
-                        android:textColor="#ffffff"
-                        android:textStyle="bold"
-                        android:textSize="10dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        >
-                    </TextView>
-                    <RatingBar
-                        android:id="@+id/rating_bar"
-                        android:background="#ffffff"
-                        android:layout_width="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:textSize="12dp"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@android:color/darker_gray"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/ad_notification_view"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                    </RatingBar>
-
-                    <TextView
-                        android:id="@+id/secondary"
-                        android:background="#ffffff"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="10dp"
-                        android:gravity="center_vertical"
-                        android:textSize="14dp"
-                        android:textColor="#000000"
-                        android:lines="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/ad_notification_view"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </LinearLayout>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/cta"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:background="@drawable/button_bg"
-                    android:textColor="#ffffff"
-                    android:lines="1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/row_two"
-                    />
-
-
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:paddingBottom="5dp">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/native_ad_icon"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center_vertical"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/native_ad_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/native_ad_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/native_ad_body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/native_ad_call_to_action"
+                    app:layout_constraintStart_toEndOf="@+id/native_ad_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/native_ad_title" />
+
+
+                <RatingBar
+                    android:id="@+id/ratingbar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:numStars="5"
+                    android:layout_marginHorizontal="10dp"
+                    android:progressTint="#fdcc0d"
+                    android:layout_marginTop="5dp"
+                    android:rating="4"
+                    app:layout_constraintLeft_toRightOf="@+id/native_ad_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/native_ad_body"
+                    android:stepSize="0.5" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/native_ad_call_to_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12dp"
+                    android:background="@drawable/button_bg"
+                    android:backgroundTint="?attr/colorAccent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/native_ad_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </com.google.android.gms.ads.nativead.NativeAdView>

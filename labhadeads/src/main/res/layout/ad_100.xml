@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/tools"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="#ffffff"
     app:cardCornerRadius="10dp"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
@@ -14,7 +14,7 @@
         android:id="@+id/unified"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/white"
+        android:backgroundTint="#F6F4F4"
         app:ignore="NamespaceTypo">
 
         <RelativeLayout
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="advertises"
-                android:textColor="@color/black"
+                android:textColor="#000000"
                 android:textSize="18dp"
                 android:layout_centerInParent="true"
                 android:gravity="center"
@@ -36,7 +36,7 @@
                 android:id="@+id/card_native_start"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app1:cardBackgroundColor="@color/white"
+                app1:cardBackgroundColor="#ffffff"
                 android:visibility="visible">
 
                 <LinearLayout
@@ -63,7 +63,7 @@
                             android:gravity="center"
                             android:rotation="-40"
                             android:text="AD"
-                            android:textColor="@color/white"
+                            android:textColor="#ffffff"
                             android:textSize="6dp"
                             android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
                             android:layout_weight="1"
                             android:maxLines="1"
                             android:textAlignment="center"
-                            android:textColor="@color/black"
+                            android:textColor="#000000"
                             android:textSize="14sp"
                             app:ignore="RtlCompat" />
 
@@ -117,7 +117,7 @@
                                 android:layout_marginTop="2dp"
                                 android:ellipsize="end"
                                 android:maxLines="1"
-                                android:textColor="@color/black"
+                                android:textColor="#000000"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
 
@@ -128,7 +128,7 @@
                                 android:ellipsize="end"
                                 android:layout_marginBottom="2dp"
                                 android:maxLines="1"
-                                android:textColor="@color/black"
+                                android:textColor="#000000"
                                 android:textSize="10sp" />
 
                             <Button
@@ -138,7 +138,7 @@
                                 android:layout_gravity="bottom"
                                 android:backgroundTint="?attr/colorAccent"
                                 android:textAllCaps="false"
-                                android:textColor="@color/white"
+                                android:textColor="#ffffff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
 

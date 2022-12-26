@@ -115,59 +115,49 @@ public class NativeUtils50 {
     }
 
     public static void populateNativeAd50(NativeAd unifiedNativeAd, NativeAdView unifiedNativeAdView) {
-        NativeAdView nativeAdView = (NativeAdView) unifiedNativeAdView.findViewById(R.id.native_ad_view);
-        TextView primaryView =  unifiedNativeAdView.findViewById(R.id.primary);
-        TextView secondaryView =  unifiedNativeAdView.findViewById(R.id.secondary);
-        TextView bodyText =  unifiedNativeAdView.findViewById(R.id.body);
-        RatingBar ratingBar = (RatingBar) unifiedNativeAdView.findViewById(R.id.rating_bar);
+
+        try {
+            NativeAdView nativeAdView = (NativeAdView) unifiedNativeAdView.findViewById(R.id.native_ad_view);
+            TextView primaryView =  unifiedNativeAdView.findViewById(R.id.native_ad_title);
+            TextView bodyText =  unifiedNativeAdView.findViewById(R.id.native_ad_body);
+        RatingBar ratingBar = (RatingBar) unifiedNativeAdView.findViewById(R.id.ratingbar);
         ratingBar.setEnabled(false);
-        Button callToActionView =  unifiedNativeAdView.findViewById(R.id.cta);
-        ImageView iconView =  unifiedNativeAdView.findViewById(R.id.icon);
-//        background = (ConstraintLayout) unifiedNativeAdView.findViewById(R.id.background);
+            Button callToActionView =  unifiedNativeAdView.findViewById(R.id.native_ad_call_to_action);
+            ImageView iconView =  unifiedNativeAdView.findViewById(R.id.native_ad_icon);
 
-        String store = unifiedNativeAd.getStore();
-        String advertiser = unifiedNativeAd.getAdvertiser();
-        String headline = unifiedNativeAd.getHeadline();
-        String body = unifiedNativeAd.getBody();
-        String callToAction = unifiedNativeAd.getCallToAction();
-        Double starRating = unifiedNativeAd.getStarRating();
-        NativeAd.Image icon = unifiedNativeAd.getIcon();
+            String headline = unifiedNativeAd.getHeadline();
+            String body = unifiedNativeAd.getBody();
+            String callToAction = unifiedNativeAd.getCallToAction();
+            Double starRating = unifiedNativeAd.getStarRating();
+            NativeAd.Image icon = unifiedNativeAd.getIcon();
 
-        nativeAdView.setCallToActionView(callToActionView);
-        nativeAdView.setHeadlineView(primaryView);
-        secondaryView.setVisibility(View.VISIBLE);
-        if (!TextUtils.isEmpty(unifiedNativeAd.getStore()) && TextUtils.isEmpty(unifiedNativeAd.getAdvertiser())) {
-            nativeAdView.setStoreView(secondaryView);
-        } else if (!TextUtils.isEmpty(advertiser)) {
-            nativeAdView.setAdvertiserView(secondaryView);
-            store = advertiser;
-        } else {
-            store = "";
-        }
-        primaryView.setText(headline);
-        callToActionView.setText(callToAction);
+            nativeAdView.setCallToActionView(callToActionView);
+            nativeAdView.setHeadlineView(primaryView);
+            primaryView.setText(headline);
+            callToActionView.setText(callToAction);
 
         if (starRating != null && starRating > Double.longBitsToDouble(1)) {
-            secondaryView.setVisibility(View.GONE);
             ratingBar.setVisibility(View.VISIBLE);
             ratingBar.setRating(starRating.floatValue());
             nativeAdView.setStarRatingView(ratingBar);
         } else {
-            secondaryView.setText(store);
-            secondaryView.setVisibility(View.VISIBLE);
             ratingBar.setVisibility(View.GONE);
         }
-        if (icon != null) {
-            iconView.setVisibility(View.VISIBLE);
-            iconView.setImageDrawable(icon.getDrawable());
-        } else {
-            iconView.setVisibility(View.GONE);
+            if (icon != null) {
+                iconView.setVisibility(View.VISIBLE);
+                iconView.setImageDrawable(icon.getDrawable());
+            } else {
+                iconView.setVisibility(View.GONE);
+            }
+            if (bodyText != null) {
+                bodyText.setText(body);
+                nativeAdView.setBodyView(bodyText);
+            }
+            nativeAdView.setNativeAd(unifiedNativeAd);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (bodyText != null) {
-            bodyText.setText(body);
-            nativeAdView.setBodyView(bodyText);
-        }
-        nativeAdView.setNativeAd(unifiedNativeAd);
+
 
     }
 

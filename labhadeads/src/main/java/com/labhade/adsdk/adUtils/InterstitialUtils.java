@@ -40,6 +40,7 @@ public class InterstitialUtils {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         super.onAdFailedToLoad(loadAdError);
+                        AdConstants.isSplash = false;
                         if (dialog != null && dialog.isShowing()) {
                             dialog.dismiss();
                         }
@@ -65,6 +66,7 @@ public class InterstitialUtils {
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         super.onAdLoaded(interstitialAd);
                         AdConstants.setCountDown();
+                        AdConstants.isSplash = false;
                         if (isFailed) {
                             show_interstitial(interstitialAd);
                         } else {
@@ -119,6 +121,8 @@ public class InterstitialUtils {
                     if (dialog != null && dialog.isShowing()) {
                         dialog.dismiss();
                     }
+                    AdConstants.isSplash = false;
+
 //                        show_interstitial(mInterstitialAd);
                     listener.onAdClose(true);
                 }
