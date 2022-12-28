@@ -15,8 +15,10 @@ import com.labhade.adsdk.adUtils.BannerUtilsFb;
 import com.labhade.adsdk.adUtils.InterstitialUtils;
 import com.labhade.adsdk.adUtils.InterstitialUtilsFb;
 import com.labhade.adsdk.adUtils.NativeUtils;
+import com.labhade.adsdk.adUtils.NativeUtils350;
 import com.labhade.adsdk.adUtils.NativeUtils40;
 import com.labhade.adsdk.adUtils.NativeUtils50;
+import com.labhade.adsdk.adUtils.NativeUtils60;
 import com.labhade.adsdk.adUtils.NativeUtilsFb;
 import com.labhade.adsdk.adUtils.RewardedUtils;
 import com.labhade.adsdk.aditerface.Interstitial;
@@ -26,9 +28,11 @@ public class LabhadeAds {
    public static boolean  isClicked = false;
 
     public enum AdTemplate {
+        NATIVE_350,
         NATIVE_300,
         NATIVE_100,
         NATIVE_50,
+        NATIVE_60,
         NATIVE_40
     }
 
@@ -126,11 +130,15 @@ public class LabhadeAds {
         AdsAccountProvider myPref = new AdsAccountProvider(context);
 
         if (myPref.getAdsType().equals("admob")) {
-            if (adTemplate.equals(AdTemplate.NATIVE_300)) {
+            if (adTemplate.equals(AdTemplate.NATIVE_350)) {
+                NativeUtils350.showNative(context, nativeContainer, space);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_300)) {
                 NativeUtils.showNative(context, nativeContainer, space, true);
             } else if (adTemplate.equals(AdTemplate.NATIVE_100)){
                 NativeUtils.showNative(context, nativeContainer, space, false);
-            } else if (adTemplate.equals(AdTemplate.NATIVE_50)){
+            }  else if (adTemplate.equals(AdTemplate.NATIVE_60)){
+                NativeUtils60.showNative(context, nativeContainer, space);
+            }  else if (adTemplate.equals(AdTemplate.NATIVE_50)){
                 NativeUtils50.showNative(context, nativeContainer, space);
             } else {
                 NativeUtils40.showNative(context, nativeContainer, space);

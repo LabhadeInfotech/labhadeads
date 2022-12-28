@@ -1,17 +1,15 @@
 package com.example.adslibraryproj;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.labhade.adsdk.LabhadeAds;
-import com.labhade.adsdk.aditerface.Interstitial;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import com.labhade.adsdk.LabhadeAds;
+
+public class MainActivity2 extends AppCompatActivity {
     RelativeLayout rlBanner,rlNative;
     View tvSpace;
     Button next;
@@ -28,13 +26,10 @@ public class MainActivity extends AppCompatActivity {
         tvSpace = findViewById(com.labhade.adsdk.R.id.tvSpace);
         next = findViewById(R.id.next);
 
-        LabhadeAds.setDefault();
-        LabhadeAds.setTestMode(this);
-        LabhadeAds.showBanner(this,rlBanner);
-        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_60);
 
-        next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {
-            startActivity(new Intent(MainActivity.this,MainActivity2.class));
-        }));
+        LabhadeAds.showBanner(this,rlBanner);
+        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_350);
+
+        next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {}));
     }
 }
