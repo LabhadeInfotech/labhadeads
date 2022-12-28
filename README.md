@@ -15,7 +15,7 @@ Step 1. Add the JitPack repository to your build file
 Step 2. Add the dependency
 
         dependencies {
-                   implementation 'com.github.LabhadeInfotech:labhadeads:1.0.6'
+                   implementation 'com.github.LabhadeInfotech:labhadeads:1.0.8'
                   }       
 
  ============= Themes ==============
@@ -46,18 +46,11 @@ Step 2. Add the dependency
                 LabhadeAds.setDefault(); ---> SPLASH ONLY
                 LabhadeAds.setTestMode(this); ---> TEST MODE
                 LabhadeAds.showBanner(this,rlBanner);
-                LabhadeAds.showNative(this,rlNative,tvSpace,false);
+                LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_60);
+
 
                 next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {}));
             }
         }
         
-=============  xml implementation ================
-
-          - Native
-            <include layout="@layout/include_native_view" />
-
-          - Banner 
-            <include layout="@layout/include_banner_view" />
-    
 
