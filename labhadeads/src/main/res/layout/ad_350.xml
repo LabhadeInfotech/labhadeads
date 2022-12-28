@@ -81,19 +81,35 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image_app" />
 
-            <Button
+            <RelativeLayout
                 android:id="@+id/button_ad"
                 android:layout_width="0dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/button_bg"
                 android:backgroundTint="?attr/colorAccent"
-                android:textColor="#ffffff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/ad_call_to_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:singleLine="false"
+                    android:text="abc"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/constraintNativeMedia"

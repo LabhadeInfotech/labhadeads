@@ -118,7 +118,7 @@ public class NativeUtils60 {
         try {
             unifiedNativeAdView.setHeadlineView(unifiedNativeAdView.findViewById(R.id.text_header));
             unifiedNativeAdView.setBodyView(unifiedNativeAdView.findViewById(R.id.text_description));
-            unifiedNativeAdView.setCallToActionView(unifiedNativeAdView.findViewById(R.id.button_ad));
+            unifiedNativeAdView.setCallToActionView(unifiedNativeAdView.findViewById(R.id.ad_call_to_action));
             unifiedNativeAdView.setIconView(unifiedNativeAdView.findViewById(R.id.image_app));
 
 

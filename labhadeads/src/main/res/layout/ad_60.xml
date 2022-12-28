@@ -75,19 +75,34 @@
                 app:layout_constraintStart_toStartOf="@+id/text_header"
                 app:layout_constraintTop_toBottomOf="@+id/text_header" />
 
-            <Button
+            <RelativeLayout
                 android:id="@+id/button_ad"
                 android:layout_width="0dp"
                 android:layout_height="44dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:textColor="#FFFFFF"
                 android:background="@drawable/button_bg"
                 android:backgroundTint="?attr/colorAccent"
-                android:elevation="3dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/ad_call_to_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:singleLine="false"
+                    android:text="abc"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.gms.ads.nativead.NativeAdView>
