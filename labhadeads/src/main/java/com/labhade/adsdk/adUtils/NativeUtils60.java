@@ -121,8 +121,6 @@ public class NativeUtils60 {
             unifiedNativeAdView.setCallToActionView(unifiedNativeAdView.findViewById(R.id.ad_call_to_action));
             unifiedNativeAdView.setIconView(unifiedNativeAdView.findViewById(R.id.image_app));
 
-
-
             if (unifiedNativeAd.getHeadline() == null) {
                 unifiedNativeAdView.getHeadlineView().setVisibility(View.INVISIBLE);
             } else {

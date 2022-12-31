@@ -25,7 +25,8 @@ import com.labhade.adsdk.aditerface.Interstitial;
 
 
 public class LabhadeAds {
-   public static boolean  isClicked = false;
+   public static boolean  isClickedInter = false;
+   public static boolean  isClickedBack = false;
 
     public enum AdTemplate {
         NATIVE_350,
@@ -78,7 +79,7 @@ public class LabhadeAds {
 
     public static void showInterstitial(Context context, Interstitial listener) {
 
-        if (isClicked()) {
+        if (isClickedInter()) {
             return;
         }
 
@@ -101,7 +102,8 @@ public class LabhadeAds {
     }
 
     public static void showRewardAd(Context context, Interstitial callback) {
-        if (isClicked()) {
+
+        if (isClickedInter()) {
             return;
         }
 
@@ -156,15 +158,29 @@ public class LabhadeAds {
     }
 
 
-    public static boolean isClicked() {
-        if (isClicked) {
+    public static boolean isClickedInter() {
+        if (isClickedInter) {
             return true;
         }
-        isClicked = true;
+        isClickedInter = true;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                isClicked = false;
+                isClickedInter = false;
+            }
+        },1500);
+        return false;
+    }
+
+    public static boolean isClickedBack() {
+        if (isClickedBack) {
+            return true;
+        }
+        isClickedBack = true;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isClickedBack = false;
             }
         },1500);
         return false;
@@ -172,7 +188,7 @@ public class LabhadeAds {
 
     public static void onBackPressed(Context context, Interstitial listener) {
 
-        if (isClicked()) {
+        if (isClickedBack()) {
             return;
         }
 
