@@ -14,7 +14,7 @@ import com.labhade.adsdk.aditerface.Interstitial;
 public class MainActivity extends AppCompatActivity {
     RelativeLayout rlBanner,rlNative;
     View tvSpace;
-    Button next;
+    Button next,reward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +27,18 @@ public class MainActivity extends AppCompatActivity {
         rlNative = findViewById(com.labhade.adsdk.R.id.rlNative);
         tvSpace = findViewById(com.labhade.adsdk.R.id.tvSpace);
         next = findViewById(R.id.next);
+        reward = findViewById(R.id.btn_click_here);
 
         LabhadeAds.setDefault();
         LabhadeAds.setTestMode(this);
         LabhadeAds.showBanner(this,rlBanner);
-        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_60);
+        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_100);
 
         next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {
+            startActivity(new Intent(MainActivity.this,MainActivity2.class));
+        }));
+
+        reward.setOnClickListener(v -> LabhadeAds.showRewardAd(this, isFail -> {
             startActivity(new Intent(MainActivity.this,MainActivity2.class));
         }));
     }

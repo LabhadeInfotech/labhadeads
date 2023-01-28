@@ -141,6 +141,13 @@ public class AdsAccountProvider {
 
     public boolean isInterEnable() {
         return sharedPreferences.getBoolean( AdConstants.KEY_INTER_ENABLE, true);
+    }
 
+    public void setPreload(String preload) {
+        sharedPreferences.edit().putString( AdConstants.KEY_LOAD_PRE, preload ).apply();
+    }
+
+    public String getPreload() {
+        return sharedPreferences.getString( AdConstants.KEY_LOAD_PRE, "load");
     }
 }

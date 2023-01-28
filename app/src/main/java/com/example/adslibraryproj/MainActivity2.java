@@ -1,5 +1,6 @@
 package com.example.adslibraryproj;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,7 @@ import com.labhade.adsdk.LabhadeAds;
 public class MainActivity2 extends AppCompatActivity {
     RelativeLayout rlBanner,rlNative;
     View tvSpace;
-    Button next;
+    Button next,reward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +26,17 @@ public class MainActivity2 extends AppCompatActivity {
         rlNative = findViewById(com.labhade.adsdk.R.id.rlNative);
         tvSpace = findViewById(com.labhade.adsdk.R.id.tvSpace);
         next = findViewById(R.id.next);
+        reward = findViewById(R.id.btn_click_here);
+
 
 
         LabhadeAds.showBanner(this,rlBanner);
-        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_350);
+        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_60);
 
         next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {}));
+        reward.setOnClickListener(v -> LabhadeAds.showRewardAd(this, isFail -> {
+
+        }));
+
     }
 }

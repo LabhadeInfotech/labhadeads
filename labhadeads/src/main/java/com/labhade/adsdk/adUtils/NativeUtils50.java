@@ -60,6 +60,7 @@ public class NativeUtils50 {
 
                     load_native(context, rlNative, space);
                 } else {
+                    AdConstants.nativeAds = null;
                     AdConstants.nativeAds = nativeAd;
                 }
             }
@@ -106,12 +107,63 @@ public class NativeUtils50 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            AdConstants.nativeAds = null;
             load_native(context, rlNative, space);
         } else {
+            AdConstants.nativeAds = null;
             AdConstants.isPreloadedNative = false;
             load_native(context, rlNative, space);
         }
 
+    }
+
+
+    public static void loadAndShowAds(Context context, RelativeLayout rlNative, View space) {
+
+        AdsAccountProvider accountProvider = new AdsAccountProvider(context);
+
+        mUnitId = accountProvider.getNativeAds1();
+
+        AdLoader adLoader = new AdLoader.Builder(context, mUnitId).forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+            @Override
+            public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+                try {
+                    if (rlNative.getChildCount() > 0) {
+                        rlNative.removeAllViews();
+                    }
+
+                    View view;
+                    view = LayoutInflater.from(context).inflate(R.layout.ad_50, null);
+                    populateNativeAd50(nativeAd, (NativeAdView) view.findViewById(R.id.native_ad_view));
+                    space.setVisibility(View.GONE);
+                    rlNative.setVisibility(View.VISIBLE);
+                    rlNative.removeAllViews();
+                    rlNative.addView(view);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).withAdListener(new AdListener() {
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                try {
+                    space.setVisibility(View.VISIBLE);
+                    rlNative.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).withNativeAdOptions(new NativeAdOptions.Builder().build()).build();
+
+        adLoader.loadAd(new AdRequest.Builder().build());
     }
 
     public static void populateNativeAd50(NativeAd unifiedNativeAd, NativeAdView unifiedNativeAdView) {

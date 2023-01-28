@@ -59,9 +59,9 @@ public class NativeUtils {
                         e.printStackTrace();
                     }
 
-
                     load_native(context, rlNative, space, isBigNative);
                 } else {
+                    AdConstants.nativeAds = null;
                     AdConstants.nativeAds = nativeAd;
                 }
             }
@@ -92,7 +92,6 @@ public class NativeUtils {
     public static void showNative(Context context,RelativeLayout rlNative, View space,boolean isBigNative) {
 
         if (AdConstants.nativeAds != null) {
-
             try {
                 if (rlNative.getChildCount() > 0) {
                     rlNative.removeAllViews();
@@ -113,13 +112,68 @@ public class NativeUtils {
             } catch (Exception e){
                 e.printStackTrace();
             }
+            AdConstants.nativeAds = null;
             load_native(context,rlNative,space,isBigNative);
         } else {
             AdConstants.isPreloadedNative = false;
+            AdConstants.nativeAds = null;
             load_native(context,rlNative,space,isBigNative);
         }
 
     }
+
+
+    public static void loadAndShowAds(Context context,RelativeLayout rlNative, View space,boolean isBigNative) {
+
+        AdsAccountProvider accountProvider = new AdsAccountProvider(context);
+
+        mUnitId = accountProvider.getNativeAds1();
+
+        AdLoader adLoader = new AdLoader.Builder(context, mUnitId).forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+            @Override
+            public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+                try {
+                    if (rlNative.getChildCount() > 0) {
+                        rlNative.removeAllViews();
+                    }
+
+                    View view;
+                    if (isBigNative) {
+                        view = LayoutInflater.from(context).inflate(R.layout.ad_300, null);
+                        populate300AppInstallAdViewMedia(nativeAd, (NativeAdView) view.findViewById(R.id.unified));
+                    } else {
+                        view = LayoutInflater.from(context).inflate(R.layout.ad_100, null);
+                        populateAppInstallAdViewMedia(nativeAd, (NativeAdView) view.findViewById(R.id.unified));
+                    }
+                    space.setVisibility(View.GONE);
+                    rlNative.setVisibility(View.VISIBLE);
+                    rlNative.removeAllViews();
+                    rlNative.addView(view);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).withAdListener(new AdListener() {
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                try {
+                    space.setVisibility(View.VISIBLE);
+                    rlNative.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).withNativeAdOptions(new NativeAdOptions.Builder().build()).build();
+
+        adLoader.loadAd(new AdRequest.Builder().build());
+    }
+
 
     public static void populateAppInstallAdViewMedia(NativeAd unifiedNativeAd, NativeAdView unifiedNativeAdView) {
 
@@ -163,9 +217,7 @@ public class NativeUtils {
             unifiedNativeAdView.setNativeAd(unifiedNativeAd);
         } catch (Exception e2) {
             e2.printStackTrace();
-            return;
         }
-
     }
 
     public static void populate300AppInstallAdViewMedia(NativeAd unifiedNativeAd, NativeAdView unifiedNativeAdView) {

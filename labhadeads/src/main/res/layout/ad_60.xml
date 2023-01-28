@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.gms.ads.nativead.NativeAdView
+    android:id="@+id/root_ad_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root_native"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardBackgroundColor="#F6F4F4"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp">
+    android:layout_height="wrap_content">
 
-    <com.google.android.gms.ads.nativead.NativeAdView
-        android:id="@+id/root_ad_view"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/root_native"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:cardBackgroundColor="#F6F4F4"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ad_root_view"
@@ -105,5 +106,8 @@
             </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.gms.ads.nativead.NativeAdView>
-</androidx.cardview.widget.CardView>
+
+
+    </androidx.cardview.widget.CardView>
+
+</com.google.android.gms.ads.nativead.NativeAdView>

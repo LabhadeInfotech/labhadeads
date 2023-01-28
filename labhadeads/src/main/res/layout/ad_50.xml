@@ -6,6 +6,8 @@
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
+    android:background="@drawable/button_bg"
+    android:backgroundTint="#FFFFFF"
     android:padding="5dp">
 
     <androidx.cardview.widget.CardView
@@ -13,8 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="4dp"
-        app:cardBackgroundColor="#F6F4F4"
-        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="#00000000"
         app:cardUseCompatPadding="true">
 
         <LinearLayout

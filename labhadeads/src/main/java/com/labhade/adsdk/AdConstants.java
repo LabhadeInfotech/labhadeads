@@ -23,6 +23,7 @@ public  class AdConstants {
     public static final String KEY_FB_INTER = "key_inter_fb_ads";
     public static final String KEY_BACK_PRESS = "key_backpress_ads";
     public static final String KEY_INTER_ENABLE = "key_inter_enable";
+    public static final String KEY_LOAD_PRE = "key_pre_load";
     public static  boolean isAdShowing = false;
     public static  boolean isSplash = true;
 
@@ -34,6 +35,7 @@ public  class AdConstants {
     public static com.facebook.ads.NativeAd nativeAdFb = null;
     public static InterstitialAd interAdmob = null;
     public static com.facebook.ads.InterstitialAd interFb = null;
+    public static int interCount = 0;
 
 
     public static CountDownTimer mCountTimer = null;

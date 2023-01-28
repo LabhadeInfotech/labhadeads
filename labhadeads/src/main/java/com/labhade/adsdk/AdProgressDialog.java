@@ -19,8 +19,7 @@ public class AdProgressDialog {
             if (!((Activity) context).isFinishing()) {
                 dialog.show();
             }
-        } catch (Exception unused) {
-        }
+        } catch (Exception unused) {}
         return dialog;
     }
 }

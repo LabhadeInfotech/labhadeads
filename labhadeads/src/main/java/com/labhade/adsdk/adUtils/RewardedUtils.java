@@ -63,12 +63,18 @@ public class RewardedUtils {
 
             @Override
             public void onAdDismissedFullScreenContent() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
                 rewardCallback.onAdClose(false);
             }
 
             @Override
             public void onAdFailedToShowFullScreenContent(AdError adError) {
-                showRewarded(context,rewardedAd,rewardCallback);
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+                rewardCallback.onAdClose(false);
             }
 
             @Override
@@ -76,6 +82,9 @@ public class RewardedUtils {
 
             @Override
             public void onAdShowedFullScreenContent() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
             }
         });
     }

@@ -30,8 +30,10 @@ public class BannerUtils {
                 e.printStackTrace();
             }
 
+            AdConstants.adView = null;
             load_ads(context, bannerView,false);
         } else {
+            AdConstants.adView = null;
             load_ads(context, bannerView, true);
         }
     }
@@ -63,10 +65,10 @@ public class BannerUtils {
                     }catch (Exception e) {
                         e.printStackTrace();
                     }
-
-                    AdConstants.adView = adView;
+                    AdConstants.adView = null;
                     load_ads(context, bannerView,false);
                 } else {
+                    AdConstants.adView = null;
                     AdConstants.adView = adView;
                 }
             }
@@ -74,5 +76,38 @@ public class BannerUtils {
 
         adView.loadAd(new AdRequest.Builder().build());
     }
+
+    public static void loadAndShowAds(Context context, RelativeLayout bannerView) {
+
+        AdsAccountProvider accountProvider = new AdsAccountProvider(context);
+        mUnitId = accountProvider.getBannerAds1();
+
+        AdView adView = new AdView(context);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId(mUnitId);
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                loadAndShowAds(context, bannerView);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                try {
+                    if (bannerView.getChildCount() > 0) {
+                        bannerView.removeAllViews();
+                    }
+                    bannerView.addView(adView);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        adView.loadAd(new AdRequest.Builder().build());
+    }
+
 
 }
