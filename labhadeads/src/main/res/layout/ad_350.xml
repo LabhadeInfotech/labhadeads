@@ -89,7 +89,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/button_bg"
-                android:backgroundTint="?attr/colorAccent"
+                android:backgroundTint="?attr/tabRippleColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="parent">

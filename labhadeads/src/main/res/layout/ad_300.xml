@@ -92,7 +92,7 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/button_bg"
-                android:backgroundTint="?attr/colorAccent">
+                android:backgroundTint="?attr/tabRippleColor">
 
                 <TextView
                     android:id="@+id/ad_call_to_action"
@@ -121,7 +121,7 @@
             android:gravity="center"
             android:rotation="-40"
             android:text="AD"
-            android:backgroundTint="?attr/colorAccent"
+            android:backgroundTint="?attr/tabRippleColor"
             android:textColor="#ffffff"
             android:textSize="8dp"
             android:textStyle="bold" />

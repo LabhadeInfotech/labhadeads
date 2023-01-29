@@ -49,7 +49,7 @@ public class BannerUtils {
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
                 AdConstants.adView = null;
-                load_ads(context, bannerView,true);
+                load_ads(context, bannerView, isFailed);
             }
 
             @Override

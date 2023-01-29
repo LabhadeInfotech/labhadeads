@@ -47,6 +47,7 @@ public class NativeUtils40 {
                     rlNative.removeAllViews();
                     rlNative.addView(view);
 
+                    AdConstants.nativeAds = null;
                     load_native(context, rlNative, space);
                 } else {
                     AdConstants.nativeAds = null;
@@ -63,8 +64,12 @@ public class NativeUtils40 {
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
                 AdConstants.nativeAds = null;
-                space.setVisibility(View.VISIBLE);
-                rlNative.setVisibility(View.GONE);
+                try {
+                    space.setVisibility(View.VISIBLE);
+                    rlNative.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 load_native(context, rlNative, space);
             }
         }).withNativeAdOptions(new NativeAdOptions.Builder().build()).build();
@@ -88,7 +93,6 @@ public class NativeUtils40 {
             AdConstants.nativeAds = null;
             load_native(context,rlNative,space);
         } else {
-            AdConstants.nativeAds = null;
             AdConstants.isPreloadedNative = false;
             load_native(context,rlNative,space);
         }
@@ -123,6 +127,7 @@ public class NativeUtils40 {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
+                loadAndShowAds(context, rlNative, space);
                 space.setVisibility(View.VISIBLE);
                 rlNative.setVisibility(View.GONE);
             }

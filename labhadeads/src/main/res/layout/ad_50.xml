@@ -117,7 +117,7 @@
                     android:textColor="@android:color/white"
                     android:textSize="12dp"
                     android:background="@drawable/button_bg"
-                    android:backgroundTint="?attr/colorAccent"
+                    android:backgroundTint="?attr/tabRippleColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/native_ad_title" />
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,5 +14,6 @@
         <!-- Customize your theme here. -->
         <item name="colorAccent">#5C6BC0</item>
         <item name="colorOutline">#ffffff</item>
+        <item name="tabRippleColor">#FFB74D</item>
     </style>
 </resources>

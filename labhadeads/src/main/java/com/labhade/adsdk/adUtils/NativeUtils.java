@@ -162,6 +162,7 @@ public class NativeUtils {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
+                loadAndShowAds(context, rlNative, space, isBigNative);
                 try {
                     space.setVisibility(View.VISIBLE);
                     rlNative.setVisibility(View.GONE);

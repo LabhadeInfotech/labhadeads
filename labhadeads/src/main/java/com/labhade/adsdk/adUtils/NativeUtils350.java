@@ -111,7 +111,6 @@ public class NativeUtils350 {
             AdConstants.nativeAds = null;
             load_native(context, rlNative, space);
         } else {
-            AdConstants.nativeAds = null;
             AdConstants.isPreloadedNative = false;
             load_native(context, rlNative, space);
         }
@@ -153,6 +152,7 @@ public class NativeUtils350 {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
+                loadAndShowAds(context, rlNative, space);
                 try {
                     space.setVisibility(View.VISIBLE);
                     rlNative.setVisibility(View.GONE);

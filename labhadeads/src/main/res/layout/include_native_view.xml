@@ -12,7 +12,7 @@
         android:background="@drawable/ads_space"
         android:gravity="center"
         android:text="Advertisement"
-        android:textColor="?attr/colorAccent"
+        android:textColor="?attr/tabRippleColor"
         android:textSize="16dp" />
 
     <RelativeLayout
