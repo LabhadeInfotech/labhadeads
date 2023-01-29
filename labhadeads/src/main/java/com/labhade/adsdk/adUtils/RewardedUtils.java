@@ -59,10 +59,14 @@ public class RewardedUtils {
         rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
             @Override
             public void onAdClicked() {
+                super.onAdClicked();
             }
+
+
 
             @Override
             public void onAdDismissedFullScreenContent() {
+                super.onAdDismissedFullScreenContent();
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
@@ -71,6 +75,7 @@ public class RewardedUtils {
 
             @Override
             public void onAdFailedToShowFullScreenContent(AdError adError) {
+                super.onAdFailedToShowFullScreenContent(adError);
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
@@ -78,10 +83,13 @@ public class RewardedUtils {
             }
 
             @Override
-            public void onAdImpression() {}
+            public void onAdImpression() {
+                super.onAdImpression();
+            }
 
             @Override
             public void onAdShowedFullScreenContent() {
+                super.onAdShowedFullScreenContent();
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
