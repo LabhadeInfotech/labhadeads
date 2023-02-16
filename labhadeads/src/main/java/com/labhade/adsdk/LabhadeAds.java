@@ -6,8 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.facebook.ads.AudienceNetworkAds;
@@ -90,7 +88,7 @@ public class LabhadeAds {
             AdsAccountProvider myPref = new AdsAccountProvider(context);
 
             if (myPref.getAdsType().equals("admob") && myPref.isInterEnable()) {
-                if (AdConstants.interCount != 4) {
+                if (AdConstants.interCount != 6) {
                     InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
 
                     if (myPref.getPreload().equals("pre")) {

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,8 +19,8 @@ import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
-import com.labhade.adsdk.AdsAccountProvider;
 import com.labhade.adsdk.AdConstants;
+import com.labhade.adsdk.AdsAccountProvider;
 import com.labhade.adsdk.R;
 
 public class NativeUtils {
@@ -178,23 +179,63 @@ public class NativeUtils {
 
     public static void populateAppInstallAdViewMedia(NativeAd unifiedNativeAd, NativeAdView unifiedNativeAdView) {
 
-//        if (unifiedNativeAd.getIcon() == null) {
-//            unifiedNativeAdView.getIconView().setVisibility(View.GONE);
-//        } else {
-//            ((ImageView) unifiedNativeAdView.getIconView()).setImageDrawable(unifiedNativeAd.getIcon().getDrawable());
-//            unifiedNativeAdView.getIconView().setVisibility(View.VISIBLE);
-//        }
         try {
             unifiedNativeAdView.setMediaView((MediaView) unifiedNativeAdView.findViewById(R.id.ad_media));
             unifiedNativeAdView.setHeadlineView(unifiedNativeAdView.findViewById(R.id.ad_headline));
+            unifiedNativeAdView.setAdvertiserView(unifiedNativeAdView.findViewById(R.id.ad_advertiser));
             unifiedNativeAdView.setBodyView(unifiedNativeAdView.findViewById(R.id.ad_body));
+            unifiedNativeAdView.setIconView(unifiedNativeAdView.findViewById(R.id.ad_icon));
             unifiedNativeAdView.setCallToActionView(unifiedNativeAdView.findViewById(R.id.ad_call_to_action));
-//        unifiedNativeAdView.setIconView(unifiedNativeAdView.findViewById(R.id.ad_app_icon));
+            unifiedNativeAdView.setStoreView(unifiedNativeAdView.findViewById(R.id.ad_store));
+            unifiedNativeAdView.setImageView(unifiedNativeAdView.findViewById(R.id.ad_image));
+            unifiedNativeAdView.setStarRatingView(unifiedNativeAdView.findViewById(R.id.ad_rating));
+
+            if (unifiedNativeAd.getIcon() == null) {
+                ((ImageView) unifiedNativeAdView.getIconView()).setVisibility(View.INVISIBLE);
+            } else {
+                ((ImageView) unifiedNativeAdView.getIconView()).setVisibility(View.VISIBLE);
+                ((ImageView) unifiedNativeAdView.getIconView()).setImageDrawable(unifiedNativeAd.getIcon().getDrawable());
+            }
+
+            if (unifiedNativeAd.getMediaContent() == null) {
+                ((MediaView) unifiedNativeAdView.getMediaView()).setVisibility(View.GONE);
+                if (unifiedNativeAd.getImages().size() > 0) {
+                    ((ImageView) unifiedNativeAdView.getImageView()).setVisibility(View.INVISIBLE);
+                } else {
+                    ((ImageView) unifiedNativeAdView.getImageView()).setVisibility(View.VISIBLE);
+                    ((ImageView) unifiedNativeAdView.getImageView()).setImageDrawable(unifiedNativeAd.getImages().get(0).getDrawable());
+                }
+            } else {
+                ((MediaView) unifiedNativeAdView.getMediaView()).setVisibility(View.VISIBLE);
+            }
+
+
             if (unifiedNativeAd.getHeadline() == null) {
                 ((TextView) unifiedNativeAdView.getHeadlineView()).setVisibility(View.INVISIBLE);
             } else {
                 ((TextView) unifiedNativeAdView.getHeadlineView()).setVisibility(View.VISIBLE);
                 ((TextView) unifiedNativeAdView.getHeadlineView()).setText(unifiedNativeAd.getHeadline());
+            }
+
+            if (unifiedNativeAd.getStore() == null) {
+                ((TextView) unifiedNativeAdView.getStoreView()).setVisibility(View.GONE);
+            } else {
+                ((TextView) unifiedNativeAdView.getStoreView()).setVisibility(View.VISIBLE);
+                ((TextView) unifiedNativeAdView.getStoreView()).setText(unifiedNativeAd.getStore());
+            }
+
+            if (unifiedNativeAd.getAdvertiser() == null) {
+                ((TextView) unifiedNativeAdView.getAdvertiserView()).setVisibility(View.GONE);
+                if (unifiedNativeAd.getStarRating() == null) {
+                    unifiedNativeAdView.getStarRatingView().setVisibility(View.GONE);
+                } else {
+                    unifiedNativeAdView.getStarRatingView().setVisibility(View.VISIBLE);
+                    ((RatingBar) unifiedNativeAdView.getStarRatingView()).setRating(unifiedNativeAd.getStarRating().floatValue());
+                    unifiedNativeAdView.getStoreView().setVisibility(View.GONE);
+                }
+            } else {
+                ((TextView) unifiedNativeAdView.getAdvertiserView()).setVisibility(View.VISIBLE);
+                ((TextView) unifiedNativeAdView.getAdvertiserView()).setText(unifiedNativeAd.getAdvertiser());
             }
 
             if (unifiedNativeAd.getBody() == null) {
@@ -219,6 +260,7 @@ public class NativeUtils {
         } catch (Exception e2) {
             e2.printStackTrace();
         }
+
     }
 
     public static void populate300AppInstallAdViewMedia(NativeAd unifiedNativeAd, NativeAdView unifiedNativeAdView) {
