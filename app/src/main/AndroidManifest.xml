@@ -30,7 +30,7 @@
             android:name=".MainActivity2"
             android:exported="true"/>
         <activity
-            android:name=".FullNativeActivity"
+            android:name="com.labhade.adsdk.FullNativeActivity"
             android:exported="true"/>
     </application>
 

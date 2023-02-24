@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.labhade.adsdk.FullNativeActivity;
 import com.labhade.adsdk.LabhadeAds;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class MainActivity2 extends AppCompatActivity {
         LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_100);
 
         next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {
-            startActivity(new Intent(MainActivity2.this,FullNativeActivity.class));
+            startActivity(new Intent(MainActivity2.this, FullNativeActivity.class));
         }));
         reward.setOnClickListener(v -> LabhadeAds.showRewardAd(this, isFail -> {
 

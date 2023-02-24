@@ -5,6 +5,7 @@ import android.os.CountDownTimer;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.nativead.NativeAd;
+import com.wortise.ads.banner.BannerAd;
 
 public  class AdConstants {
     public static boolean isTimeFinish = true;
@@ -23,17 +24,26 @@ public  class AdConstants {
     public static final String KEY_FB_INTER = "key_inter_fb_ads";
     public static final String KEY_BACK_PRESS = "key_backpress_ads";
     public static final String KEY_INTER_ENABLE = "key_inter_enable";
+
+    public static final String KEY_NATIVE_WOR = "key_native_wor";
+    public static final String KEY_REWARD_WOR = "key_reward_wor";
+    public static final String KEY_BANNER_WOR = "key_banner_wor";
+    public static final String KEY_INTERSTITIAL_WOR = "key_inter_wor";
     public static final String KEY_LOAD_PRE = "key_pre_load";
+    public static final String KEY_WORTISE = "key_wortise";
     public static  boolean isAdShowing = false;
     public static  boolean isSplash = true;
 
     public static boolean isPreloadedNative = false;
     public static boolean isPreloadedFbNative = false;
     public static NativeAd nativeAds = null;
+    public static NativeAd googleNativeAds = null;
     public static AdView adView = null;
+    public static BannerAd bannerAd = null;
     public static com.facebook.ads.AdView adViewFb = null;
     public static com.facebook.ads.NativeAd nativeAdFb = null;
     public static InterstitialAd interAdmob = null;
+    public static com.wortise.ads.interstitial.InterstitialAd interWortise = null;
     public static com.facebook.ads.InterstitialAd interFb = null;
     public static int interCount = 0;
 

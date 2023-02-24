@@ -19,7 +19,7 @@ import com.labhade.adsdk.aditerface.Interstitial;
 
 public class InterstitialUtilsFb {
 
-
+    static int failed = 0;
     public static void loadInterstitial(Context mContext, Interstitial listener) {
         AdsAccountProvider accountProvider = new AdsAccountProvider(mContext);
 
@@ -40,6 +40,7 @@ public class InterstitialUtilsFb {
                         listener.onAdClose(false);
                         AdConstants.isTimeFinish = false;
                         AdConstants.isAdShowing = false;
+                        failed = 0;
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -58,6 +59,7 @@ public class InterstitialUtilsFb {
 
                     @Override
                     public void onAdLoaded(Ad ad) {
+                        failed = 0;
                         dialog.dismiss();
                         if (!interstitialAd.isAdInvalidated()) {
                             interstitialAd.show();

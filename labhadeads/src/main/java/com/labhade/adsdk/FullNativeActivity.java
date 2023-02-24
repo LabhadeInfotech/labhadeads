@@ -1,4 +1,4 @@
-package com.example.adslibraryproj;
+package com.labhade.adsdk;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +17,7 @@ public class FullNativeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_native);
 
+        NativeUtilsBig.load_native(this,findViewById(R.id.rl_native),findViewById(R.id.tv_space));
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -26,7 +27,6 @@ public class FullNativeActivity extends AppCompatActivity {
         },2000);
         ((ImageView) findViewById(R.id.iv_close)).setOnClickListener(v -> finish());
 
-        NativeUtilsBig.load_native(this,findViewById(R.id.rl_native),findViewById(R.id.tv_space));
     }
 
     @Override

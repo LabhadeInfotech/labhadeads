@@ -150,4 +150,45 @@ public class AdsAccountProvider {
     public String getPreload() {
         return sharedPreferences.getString( AdConstants.KEY_LOAD_PRE, "load");
     }
+
+    public void setWortiseKey(String preload) {
+        sharedPreferences.edit().putString( AdConstants.KEY_WORTISE, preload ).apply();
+    }
+
+    public String getWortiseKey() {
+        return sharedPreferences.getString( AdConstants.KEY_WORTISE, "null");
+    }
+
+    public void setWortiseBanner(String bannerId) {
+        sharedPreferences.edit().putString( AdConstants.KEY_BANNER_WOR, bannerId ).apply();
+    }
+
+    public void setWortiseInter(String interId) {
+        sharedPreferences.edit().putString( AdConstants.KEY_INTERSTITIAL_WOR, interId ).apply();
+    }
+
+    public void setWortiseNative(String nativeId) {
+        sharedPreferences.edit().putString( AdConstants.KEY_NATIVE_WOR, nativeId ).apply();
+    }
+
+    public void setWortiseReward(String rewardId) {
+        sharedPreferences.edit().putString( AdConstants.KEY_REWARD_WOR, rewardId ).apply();
+    }
+
+    public String getWortiseBanner() {
+        return sharedPreferences.getString( AdConstants.KEY_BANNER_WOR, "null");
+    }
+
+    public String getWortiseInter() {
+        return sharedPreferences.getString( AdConstants.KEY_INTERSTITIAL_WOR, "null");
+    }
+
+    public String getWortiseNative() {
+        return sharedPreferences.getString( AdConstants.KEY_NATIVE_WOR, "null");
+    }
+
+    public String getWortiseReward() {
+        return sharedPreferences.getString( AdConstants.KEY_REWARD_WOR, "null");
+    }
+
 }
