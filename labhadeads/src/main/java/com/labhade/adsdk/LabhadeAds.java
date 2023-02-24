@@ -69,7 +69,7 @@ public class LabhadeAds {
     public static void setTestMode(Context context) {
         AdsAccountProvider adsAccountProvider = new AdsAccountProvider(context);
 
-        adsAccountProvider.setAdsType("wortise");
+        adsAccountProvider.setAdsType("admob");
 
         adsAccountProvider.setOpenAds("/6499/example/app-open");
         adsAccountProvider.setBannerAds1("/6499/example/banner");
@@ -87,7 +87,7 @@ public class LabhadeAds {
         adsAccountProvider.setWortiseReward("test-rewarded");
 
 
-        adsAccountProvider.setPreload("pre");
+        adsAccountProvider.setPreload("load");
 
         adsAccountProvider.setAppOpenEnable(true);
         adsAccountProvider.setRewardEnable(true);
