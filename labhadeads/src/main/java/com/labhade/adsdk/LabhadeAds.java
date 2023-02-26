@@ -1,6 +1,5 @@
 package com.labhade.adsdk;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -8,8 +7,6 @@ import android.net.NetworkInfo;
 import android.os.Handler;
 import android.view.View;
 import android.widget.RelativeLayout;
-
-import androidx.core.app.ActivityCompat;
 
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.ads.MobileAds;
@@ -250,23 +247,6 @@ public class LabhadeAds {
             space.setVisibility(View.GONE);
         }
     }
-
-    public static void requestWortisePermission(Context context) {
-        final String[] PERMISSIONS;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            PERMISSIONS = new String[]{
-                  Manifest.permission.ACCESS_FINE_LOCATION,
-                  Manifest.permission.ACCESS_COARSE_LOCATION,
-          };
-        } else {
-            PERMISSIONS = new String[]{
-                    Manifest.permission.ACCESS_BACKGROUND_LOCATION
-            };
-        }
-
-        ActivityCompat.requestPermissions((Activity) context, PERMISSIONS, 100);
-    }
-
     public static boolean isClickedInter() {
         if (isClickedInter) {
             return true;
