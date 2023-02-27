@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         LabhadeAds.setDefault();
         LabhadeAds.setTestMode(this);
 
-        LabhadeAds.initWortiseSDK(this);
-        LabhadeAds.requestWortisePermission(this);
 
         LabhadeAds.showBanner(this,rlBanner);
         LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_300);

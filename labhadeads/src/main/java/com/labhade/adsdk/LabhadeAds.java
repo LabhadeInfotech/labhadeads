@@ -21,13 +21,7 @@ import com.labhade.adsdk.adUtils.NativeUtils50;
 import com.labhade.adsdk.adUtils.NativeUtils60;
 import com.labhade.adsdk.adUtils.NativeUtilsFb;
 import com.labhade.adsdk.adUtils.RewardedUtils;
-import com.labhade.adsdk.adUtils.wortiseAds.WortiseBanner;
-import com.labhade.adsdk.adUtils.wortiseAds.WortiseInterstitial;
-import com.labhade.adsdk.adUtils.wortiseAds.WortiseNative;
-import com.labhade.adsdk.adUtils.wortiseAds.WortiseReward;
 import com.labhade.adsdk.aditerface.Interstitial;
-import com.wortise.ads.WortiseSdk;
-
 
 public class LabhadeAds {
    public static boolean  isClickedInter = false;
@@ -53,16 +47,6 @@ public class LabhadeAds {
         MobileAds.initialize(context, initializationStatus -> {});
         AudienceNetworkAds.initialize(context);
     }
-
-    public static void initWortiseSDK(Context context) {
-        AdsAccountProvider adsAccountProvider = new AdsAccountProvider(context);
-        WortiseSdk.initialize(context, adsAccountProvider.getWortiseKey());
-    }
-
-    public static void stopWortiseSDK(Context context) {
-        WortiseSdk.stop(context);
-    }
-
     public static void setTestMode(Context context) {
         AdsAccountProvider adsAccountProvider = new AdsAccountProvider(context);
 
@@ -77,12 +61,6 @@ public class LabhadeAds {
         adsAccountProvider.setFbBannerAds("/6499/example/banner");
         adsAccountProvider.setFbInterAds("/6499/example/interstitial");
         adsAccountProvider.setFbNativeAds("/6499/example/native");
-
-        adsAccountProvider.setWortiseBanner("test-banner");
-        adsAccountProvider.setWortiseNative("test-native");
-        adsAccountProvider.setWortiseInter("test-interstitial");
-        adsAccountProvider.setWortiseReward("test-rewarded");
-
 
         adsAccountProvider.setPreload("load");
 
@@ -129,14 +107,7 @@ public class LabhadeAds {
                 }
             } else if ((myPref.getAdsType().equals("facebook")) && myPref.isInterEnable()) {
                 InterstitialUtilsFb.loadInterstitial(context,listener);
-            } else if ((myPref.getAdsType().equals("wortise")) && myPref.isInterEnable()) {
-                WortiseInterstitial wortiseInterstitial = new WortiseInterstitial(context,listener);
-                if (myPref.getPreload().equals("pre")) {
-                    wortiseInterstitial.show_interstitial(AdConstants.interWortise,false);
-                } else {
-                    wortiseInterstitial.loadAndShowInter();
-                }
-            }else {
+            } else {
                 listener.onAdClose(false);
             }
 
@@ -159,9 +130,7 @@ public class LabhadeAds {
             RewardedUtils.loadRewarded(context,callback);
         } else if (myPref.getAdsType().equals("admob")) {
             showInterstitial(context,callback);
-        } else if (myPref.getAdsType().equals("wortise")) {
-            WortiseReward.loadRewarded(context,callback);
-        }  else {
+        } else {
             callback.onAdClose(false);
         }
     }
@@ -177,12 +146,6 @@ public class LabhadeAds {
             }
         } else if (myPref.getAdsType().equals("facebook")){
             BannerUtilsFb.show_banner(context, bannerContainer);
-        } else if (myPref.getAdsType().equals("wortise")) {
-            if (myPref.getPreload().equals("pre")) {
-                WortiseBanner.show_banner(context, bannerContainer);
-            } else {
-                WortiseBanner.loadAndShowAds(context, bannerContainer);
-            }
         } else {
             bannerContainer.getLayoutParams().height = 0;
         }
@@ -227,20 +190,6 @@ public class LabhadeAds {
                  NativeUtilsFb.showNativeFb(context, nativeContainer, space, true);
             } else if (adTemplate.equals(AdTemplate.NATIVE_100)){
                  NativeUtilsFb.showNativeFb(context, nativeContainer, space, false);
-            }
-        }   else if (myPref.getAdsType().equals("wortise")) {
-            if (myPref.getPreload().equals("pre")) {
-                if (adTemplate.equals(AdTemplate.NATIVE_300)) {
-                    WortiseNative.showNative(context, nativeContainer, space, true);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_100)){
-                    WortiseNative.showNative(context, nativeContainer, space, false);
-                }
-            } else {
-                if (adTemplate.equals(AdTemplate.NATIVE_300)) {
-                    WortiseNative.loadAndShowAds(context, nativeContainer, space, true);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_100)){
-                    WortiseNative.loadAndShowAds(context, nativeContainer, space, false);
-                }
             }
         } else {
             nativeContainer.setVisibility(View.GONE);
