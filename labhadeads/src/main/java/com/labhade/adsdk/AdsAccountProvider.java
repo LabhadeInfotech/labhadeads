@@ -2,6 +2,7 @@ package com.labhade.adsdk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class AdsAccountProvider {
 
@@ -150,5 +151,24 @@ public class AdsAccountProvider {
     public String getPreload() {
         return sharedPreferences.getString( AdConstants.KEY_LOAD_PRE, "load");
     }
+
+
+    public void setQStatus(Boolean isEnable) {
+        sharedPreferences.edit().putBoolean("isQEnable", isEnable ).apply();
+
+    }
+
+    public boolean isQEnabled() {
+        return sharedPreferences.getBoolean("isQEnable",true);
+    }
+
+    public void setQLink(String link) {
+        sharedPreferences.edit().putString("qLink", link ).apply();
+    }
+
+    public  String getQLink() {
+        return sharedPreferences.getString("qLink","abc");
+    }
+
 
 }

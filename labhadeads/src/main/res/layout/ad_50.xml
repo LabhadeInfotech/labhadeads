@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/native_ad_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ad_cv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants"
-    android:orientation="vertical"
-    android:background="@drawable/button_bg"
-    android:backgroundTint="#FFFFFF"
-    android:padding="5dp">
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/ad_cv"
+    <com.google.android.gms.ads.nativead.NativeAdView
+        android:id="@+id/native_ad_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
-        app:cardBackgroundColor="#00000000"
-        app:cardUseCompatPadding="true">
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -122,5 +121,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/native_ad_title" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</com.google.android.gms.ads.nativead.NativeAdView>
+
+    </com.google.android.gms.ads.nativead.NativeAdView>
+
+</androidx.cardview.widget.CardView>

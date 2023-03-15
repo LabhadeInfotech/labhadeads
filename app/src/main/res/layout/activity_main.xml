@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#90605E5E"
     tools:context=".MainActivity">
 
     <include layout="@layout/include_native_view" />
