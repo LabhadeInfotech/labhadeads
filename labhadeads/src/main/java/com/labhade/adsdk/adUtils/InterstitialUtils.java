@@ -26,6 +26,7 @@ public class InterstitialUtils {
     String mUnitId;
     private Dialog dialog = null;
     AdsAccountProvider myPref;
+    static int failed = 0;
     Interstitial listener;
 
     public InterstitialUtils(Context mContext, Interstitial listener) {
@@ -65,11 +66,21 @@ public class InterstitialUtils {
                             }
                         }
 
+                        if (!isFailed) {
+                            if (failed != 2) {
+                                failed++;
+                                load_interstitial(false);
+                            } else {
+                                failed = 0;
+                            }
+                        }
+
                     }
 
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         super.onAdLoaded(interstitialAd);
+                        failed = 0;
                         AdConstants.setCountDown();
                         AdConstants.isSplash = false;
                         if (isFailed) {
@@ -153,8 +164,10 @@ public class InterstitialUtils {
 
         myPref = new AdsAccountProvider(mContext);
 
+        AdRequest adRequest = new AdRequest.Builder().build();
+
         InterstitialAd.load(mContext, mUnitId = myPref.getInterAds1()
-                ,new AdRequest.Builder().build(), new InterstitialAdLoadCallback() {
+                ,adRequest, new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         super.onAdFailedToLoad(loadAdError);

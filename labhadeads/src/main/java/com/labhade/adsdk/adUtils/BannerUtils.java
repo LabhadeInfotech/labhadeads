@@ -1,6 +1,7 @@
 package com.labhade.adsdk.adUtils;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.labhade.adsdk.AdConstants;
 
 public class BannerUtils {
     static String mUnitId = null;
+    static int adFail = 0;
 
     public static void show_banner(Context context, RelativeLayout bannerView) {
 
@@ -49,12 +51,19 @@ public class BannerUtils {
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
                 AdConstants.adView = null;
-                load_ads(context, bannerView, isFailed);
+                if (adFail != 2) {
+                    Log.e("TAG", "onAdFailedToLoad: "+adFail);
+                    adFail++;
+                    load_ads(context, bannerView, isFailed);
+                } else {
+                    adFail = 0;
+                }
             }
 
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
+                adFail = 0;
                 if (isFailed ) {
                     try {
                         if (bannerView.getChildCount() > 0) {
@@ -89,12 +98,20 @@ public class BannerUtils {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
-                loadAndShowAds(context, bannerView);
+                if (adFail != 2) {
+                    Log.e("TAG", "onAdFailedToLoad: "+adFail);
+                    adFail++;
+                    loadAndShowAds(context, bannerView);
+                } else {
+                    adFail = 0;
+                }
+
             }
 
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
+                adFail = 0;
                 try {
                     if (bannerView.getChildCount() > 0) {
                         bannerView.removeAllViews();

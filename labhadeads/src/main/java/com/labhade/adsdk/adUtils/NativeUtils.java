@@ -26,6 +26,7 @@ import com.labhade.adsdk.R;
 public class NativeUtils {
 
     public static String mUnitId;
+    static int failed = 0;
     public static void load_native(Context context,RelativeLayout rlNative, View space,boolean isBigNative) {
 
         AdsAccountProvider accountProvider = new AdsAccountProvider(context);
@@ -35,6 +36,7 @@ public class NativeUtils {
         AdLoader adLoader = new AdLoader.Builder(context, mUnitId).forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
             @Override
             public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+                failed = 0;
                                                 // && !(context instanceof MainActivity)
                 if (!AdConstants.isPreloadedNative) {
                     AdConstants.isPreloadedNative = true;
@@ -61,6 +63,8 @@ public class NativeUtils {
                     }
 
                     load_native(context, rlNative, space, isBigNative);
+
+
                 } else {
                     AdConstants.nativeAds = null;
                     AdConstants.nativeAds = nativeAd;
@@ -83,11 +87,19 @@ public class NativeUtils {
                     e.printStackTrace();
                 }
 
-                load_native(context, rlNative, space,isBigNative);
+                if (failed != 2) {
+                    Log.e("TAG", "onAdFailedToLoad: "+failed);
+                    failed++;
+                    load_native(context, rlNative, space,isBigNative);
+                } else {
+                    failed = 0;
+                }
             }
         }).withNativeAdOptions(new NativeAdOptions.Builder().build()).build();
 
-        adLoader.loadAd(new AdRequest.Builder().build());
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        adLoader.loadAd(adRequest);
     }
 
     public static void showNative(Context context,RelativeLayout rlNative, View space,boolean isBigNative) {
@@ -113,13 +125,11 @@ public class NativeUtils {
             } catch (Exception e){
                 e.printStackTrace();
             }
-            AdConstants.nativeAds = null;
-            load_native(context,rlNative,space,isBigNative);
         } else {
             AdConstants.isPreloadedNative = false;
-            AdConstants.nativeAds = null;
-            load_native(context,rlNative,space,isBigNative);
         }
+        AdConstants.nativeAds = null;
+        load_native(context,rlNative,space,isBigNative);
 
     }
 
@@ -163,7 +173,14 @@ public class NativeUtils {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
-                loadAndShowAds(context, rlNative, space, isBigNative);
+                if (failed != 2) {
+                    Log.e("TAG", "onAdFailedToLoad: "+failed);
+                    failed++;
+                    loadAndShowAds(context, rlNative, space, isBigNative);
+                } else {
+                    failed = 0;
+                }
+
                 try {
                     space.setVisibility(View.VISIBLE);
                     rlNative.setVisibility(View.GONE);

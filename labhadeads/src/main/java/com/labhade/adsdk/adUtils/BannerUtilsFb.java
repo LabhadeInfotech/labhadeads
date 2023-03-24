@@ -14,6 +14,8 @@ import com.labhade.adsdk.AdConstants;
 
 public class BannerUtilsFb {
 
+    public static int failed = 0;
+
     public static void show_banner(Context context, RelativeLayout bannerView) {
 
         if (AdConstants.adViewFb != null) {
@@ -44,11 +46,17 @@ public class BannerUtilsFb {
             public void onError(Ad ad, AdError adError) {
                 Log.e("BANNER_ERROR-->",adError.getErrorMessage());
                 AdConstants.adViewFb = null;
-                loadFbBanner(context,adContainer,true);
+                if (failed != 2) {
+                    failed++;
+                    loadFbBanner(context,adContainer,true);
+                } else {
+                    failed = 0;
+                }
             }
 
             @Override
             public void onAdLoaded(Ad ad) {
+                failed = 0;
                 if (isFailed) {
                     AdConstants.adViewFb = adView;
                     try {

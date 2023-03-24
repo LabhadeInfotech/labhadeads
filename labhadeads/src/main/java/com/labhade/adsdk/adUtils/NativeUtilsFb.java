@@ -27,6 +27,7 @@ import java.util.List;
 public class NativeUtilsFb {
 
     public static String mUnitId;
+    public static int failed = 0;
 
     public static void loadFbNative(Context context, RelativeLayout nativeAdLayout, View space,boolean isBigNative) {
         AdsAccountProvider accountProvider = new AdsAccountProvider(context);
@@ -40,7 +41,6 @@ public class NativeUtilsFb {
 
             @Override
             public void onError(Ad ad, AdError adError) {
-                // Native ad failed to load
                 AdConstants.nativeAdFb = null;
                 try {
                     space.setVisibility(View.VISIBLE);
@@ -49,13 +49,18 @@ public class NativeUtilsFb {
                     e.printStackTrace();
                 }
 
-
-                loadFbNative(context, nativeAdLayout, space,isBigNative);
+                if (failed != 2) {
+                    failed++;
+                    loadFbNative(context, nativeAdLayout, space,isBigNative);
+                } else {
+                    failed = 0;
+                }
                 Log.e("_NATIVE_ERROR-->", "Native ad failed to load: " + adError.getErrorMessage());
             }
 
             @Override
             public void onAdLoaded(Ad ad) {
+                failed = 0;
                 if (!AdConstants.isPreloadedFbNative) {
                     AdConstants.isPreloadedFbNative = true;
 

@@ -24,6 +24,7 @@ import com.labhade.adsdk.R;
 public class NativeUtils40 {
 
     public static String mUnitId;
+    public static int failed = 0;
     public static void load_native(Context context, RelativeLayout rlNative, View space) {
 
         AdsAccountProvider accountProvider = new AdsAccountProvider(context);
@@ -32,7 +33,7 @@ public class NativeUtils40 {
         AdLoader adLoader = new AdLoader.Builder(context, mUnitId).forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
             @Override
             public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
-                                                // && !(context instanceof SplashScreen)
+                failed = 0;
                 if (!AdConstants.isPreloadedNative ) {
                     AdConstants.isPreloadedNative = true;
 
@@ -70,7 +71,13 @@ public class NativeUtils40 {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                load_native(context, rlNative, space);
+
+                if (failed != 2) {
+                    failed++;
+                    load_native(context, rlNative, space);
+                } else {
+                    failed = 0;
+                }
             }
         }).withNativeAdOptions(new NativeAdOptions.Builder().build()).build();
 
@@ -107,6 +114,7 @@ public class NativeUtils40 {
         AdLoader adLoader = new AdLoader.Builder(context, mUnitId).forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
             @Override
             public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+                failed = 0;
                 if (rlNative.getChildCount() > 0) {
                     rlNative.removeAllViews();
                 }
@@ -127,6 +135,12 @@ public class NativeUtils40 {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
+                if (failed != 2) {
+                    failed++;
+                    load_native(context, rlNative, space);
+                } else {
+                    failed = 0;
+                }
                 loadAndShowAds(context, rlNative, space);
                 space.setVisibility(View.VISIBLE);
                 rlNative.setVisibility(View.GONE);

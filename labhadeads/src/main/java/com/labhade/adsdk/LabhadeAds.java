@@ -93,17 +93,12 @@ public class LabhadeAds {
             AdsAccountProvider myPref = new AdsAccountProvider(context);
 
             if (myPref.getAdsType().equals("admob") && myPref.isInterEnable()) {
-                if (AdConstants.interCount != 6) {
-                    InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
+                InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
 
-                    if (myPref.getPreload().equals("pre")) {
-                        interstitialUtils.show_interstitial(AdConstants.interAdmob,false);
-                    } else {
-                        interstitialUtils.loadAndShowInter();
-                    }
+                if (myPref.getPreload().equals("pre")) {
+                    interstitialUtils.show_interstitial(AdConstants.interAdmob,false);
                 } else {
-                    AdConstants.interCount = 0;
-                    RewardedUtils.loadRewarded(context,listener);
+                    interstitialUtils.loadAndShowInter();
                 }
             } else if ((myPref.getAdsType().equals("facebook")) && myPref.isInterEnable()) {
                 InterstitialUtilsFb.loadInterstitial(context,listener);
@@ -160,11 +155,11 @@ public class LabhadeAds {
                     NativeUtils350.showNative(context, nativeContainer, space);
                 } else if (adTemplate.equals(AdTemplate.NATIVE_300)) {
                     NativeUtils.showNative(context, nativeContainer, space, true);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_100)){
+                } else if (adTemplate.equals(AdTemplate.NATIVE_100)) {
                     NativeUtils.showNative(context, nativeContainer, space, false);
-                }  else if (adTemplate.equals(AdTemplate.NATIVE_60)){
+                }  else if (adTemplate.equals(AdTemplate.NATIVE_60)) {
                     NativeUtils60.showNative(context, nativeContainer, space);
-                }  else if (adTemplate.equals(AdTemplate.NATIVE_50)){
+                }  else if (adTemplate.equals(AdTemplate.NATIVE_50)) {
                     NativeUtils50.showNative(context, nativeContainer, space);
                 } else {
                     NativeUtils40.showNative(context, nativeContainer, space);
