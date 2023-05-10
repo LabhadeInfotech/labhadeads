@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.labhade.adsdk.LabhadeAds;
 
-public class MainActivity extends AppCompatActivity {
+public class TestAdsMainActivity extends AppCompatActivity {
     RelativeLayout rlBanner,rlNative;
     View tvSpace;
     Button next,reward;
@@ -28,19 +28,19 @@ public class MainActivity extends AppCompatActivity {
         next = findViewById(R.id.next);
         reward = findViewById(R.id.btn_click_here);
 
-        LabhadeAds.setDefault();
         LabhadeAds.setTestMode(this);
 
+        LabhadeAds.loadInterstitial(this);
 
         LabhadeAds.showBanner(this,rlBanner);
         LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_350);
 
         next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {
-            startActivity(new Intent(MainActivity.this,MainActivity2.class));
+            startActivity(new Intent(TestAdsMainActivity.this, TestAdsMainActivity2.class));
         }));
 
         reward.setOnClickListener(v -> LabhadeAds.showRewardAd(this, isFail -> {
-            startActivity(new Intent(MainActivity.this,MainActivity2.class));
+            startActivity(new Intent(TestAdsMainActivity.this, TestAdsMainActivity2.class));
         }));
     }
 }

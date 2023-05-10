@@ -11,31 +11,32 @@
         app:cardBackgroundColor="#ffffff"
         app:cardCornerRadius="10dp">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical">
 
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?android:attr/secondaryProgress"
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit"
+                style="@style/SpinKitView.Large.Circle"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:indeterminateTint="?attr/colorPrimary"
-                android:secondaryProgressTint="?attr/colorPrimary" />
+                app:SpinKit_Color="?attr/colorPrimary" />
+
 
             <TextView
                 android:id="@+id/tvProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="24dp"
                 android:text="Ad Loading..."
                 android:textColor="?attr/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-        </FrameLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

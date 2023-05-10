@@ -5,12 +5,13 @@
     android:layout_marginVertical="10dp"
     android:paddingHorizontal="5dp">
 
-    <TextView
+    <ImageView
         android:id="@+id/tvSpace"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:background="@drawable/ads_space"
         android:gravity="center"
+        android:src="@drawable/button_bg"
         android:text="Advertisement"
         android:textColor="?attr/tabRippleColor"
         android:textSize="16dp" />

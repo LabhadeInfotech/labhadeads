@@ -216,7 +216,7 @@ public class NativeUtils350 {
             } else {
                 unifiedNativeAdView.getStarRatingView().setVisibility(View.VISIBLE);
                 ((RatingBar) unifiedNativeAdView.getStarRatingView()).setRating(unifiedNativeAd.getStarRating().floatValue());
-                unifiedNativeAdView.getStoreView().setVisibility(View.GONE);
+                unifiedNativeAdView.getStoreView().setVisibility(View.INVISIBLE);
             }
 
             if (unifiedNativeAd.getBody() == null) {

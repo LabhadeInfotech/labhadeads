@@ -1,10 +1,14 @@
 package com.labhade.adsdk;
 
+import android.os.Build;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.util.Log;
 
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.nativead.NativeAd;
+import com.labhade.adsdk.adUtils.InterstitialUtils;
 
 public  class AdConstants {
     public static boolean isTimeFinish = true;
@@ -26,7 +30,6 @@ public  class AdConstants {
 
     public static final String KEY_LOAD_PRE = "key_pre_load";
     public static  boolean isAdShowing = false;
-    public static  boolean isSplash = true;
 
     public static boolean isPreloadedNative = false;
     public static boolean isPreloadedFbNative = false;
@@ -34,31 +37,59 @@ public  class AdConstants {
     public static AdView adView = null;
     public static com.facebook.ads.AdView adViewFb = null;
     public static com.facebook.ads.NativeAd nativeAdFb = null;
-    public static InterstitialAd interAdmob = null;
     public static com.facebook.ads.InterstitialAd interFb = null;
     public static int interCount = 0;
 
-
-    public static CountDownTimer mCountTimer = null;
+    public static Handler handler;
 
     public static void setCountDown() {
-       mCountTimer = new CountDownTimer(60000, 1000) {
 
-            public void onTick(long millisUntilFinished) {}
+        handler = new Handler();
 
-            public void onFinish() {
-                AdConstants.interAdmob = null;
-                mCountTimer.cancel();
-                mCountTimer = null;
-            }
-        };
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.e("REM_CALL-->", "run: null greater");
+                    InterstitialUtils.mInterstitialAd = null;
+                }
+            },"mInterstitialAd",60000);
+        } else {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.e("REM_CALL-->", "run: null less");
+                    InterstitialUtils.mInterstitialAd = null;
+                }
+            },60000);
+        }
 
-       mCountTimer.start();
+
+//       mCountTimer = new CountDownTimer(60000, 1000) {
+//
+//            public void onTick(long millisUntilFinished) {}
+//
+//            public void onFinish() {
+//                mCountTimer.cancel();
+//                mCountTimer = null;
+//                InterstitialUtils.mInterstitialAd = null;
+//            }
+//        };
+//
+//       mCountTimer.start();
     }
 
     public static void dismissCount() {
-        if (mCountTimer != null) {
-            mCountTimer.cancel();
+        if (handler != null) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                Log.e("REM_CALL-->", "dismiss: null great");
+                handler.removeCallbacksAndMessages("mInterstitialAd");
+            } else {
+                Log.e("REM_CALL-->", "dismiss: null less");
+                handler.removeCallbacksAndMessages(null);
+            }
+            InterstitialUtils.mInterstitialAd = null;
         }
     }
 

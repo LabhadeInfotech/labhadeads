@@ -6,7 +6,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.ads.MobileAds;
@@ -25,7 +27,6 @@ import com.labhade.adsdk.aditerface.Interstitial;
 
 public class LabhadeAds {
    public static boolean  isClickedInter = false;
-   public static boolean  isClickedBack = false;
 
     public enum AdTemplate {
         NATIVE_350,
@@ -62,25 +63,25 @@ public class LabhadeAds {
         adsAccountProvider.setFbInterAds("/6499/example/interstitial");
         adsAccountProvider.setFbNativeAds("/6499/example/native");
 
-        adsAccountProvider.setPreload("load");
+        adsAccountProvider.setPreload("pre");
 
         adsAccountProvider.setAppOpenEnable(true);
         adsAccountProvider.setRewardEnable(true);
         adsAccountProvider.setInterEnable(true);
-        adsAccountProvider.setAdsTime(1);
+        adsAccountProvider.setAdsTime(0);
         adsAccountProvider.setBackAds(true);
     }
 
 
-    public static void setDefault() {
-        AdConstants.isPreloadedNative = false;
-        AdConstants.isPreloadedFbNative = false;
-        AdConstants.nativeAds = null;
-        AdConstants.adView = null;
-        AdConstants.adViewFb = null;
-        AdConstants.nativeAdFb = null;
-        AdConstants.interAdmob = null;
-        AdConstants.interFb = null;
+    public static void loadInterstitial(Context mContext) {
+        AdsAccountProvider myPref = new AdsAccountProvider(mContext);
+        if (myPref.getAdsType().equals("admob") && myPref.isInterEnable()) {
+            if (AdConstants.isTimeFinish) {
+                if (InterstitialUtils.mInterstitialAd == null) {
+                    InterstitialUtils.loadInterstitial(mContext);
+                }
+            }
+        }
     }
 
     public static void showInterstitial(Context context, Interstitial listener) {
@@ -96,7 +97,7 @@ public class LabhadeAds {
                 InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
 
                 if (myPref.getPreload().equals("pre")) {
-                    interstitialUtils.show_interstitial(AdConstants.interAdmob,false);
+                    interstitialUtils.showInterstitial();
                 } else {
                     interstitialUtils.loadAndShowInter();
                 }
@@ -187,8 +188,10 @@ public class LabhadeAds {
                  NativeUtilsFb.showNativeFb(context, nativeContainer, space, false);
             }
         } else {
+            if (!(space instanceof ImageView)) {
+                space.setVisibility(View.GONE);
+            }
             nativeContainer.setVisibility(View.GONE);
-            space.setVisibility(View.GONE);
         }
     }
     public static boolean isClickedInter() {
@@ -205,46 +208,4 @@ public class LabhadeAds {
         return false;
     }
 
-    public static boolean isClickedBack() {
-        if (isClickedBack) {
-            return true;
-        }
-        isClickedBack = true;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                isClickedBack = false;
-            }
-        },1500);
-        return false;
-    }
-
-    public static void onBackPressed(Context context, Interstitial listener) {
-
-        if (isClickedBack()) {
-            return;
-        }
-
-        if (AdConstants.isTimeFinish) {
-            AdsAccountProvider myPref = new AdsAccountProvider(context);
-
-            if (myPref.getAdsType().equals("admob") && myPref.isBackAdsEnable()) {
-                InterstitialUtils interstitialUtils = new InterstitialUtils(context,listener);
-
-                if (myPref.getPreload().equals("pre")) {
-                    interstitialUtils.show_interstitial(AdConstants.interAdmob,false);
-                } else {
-                    interstitialUtils.loadAndShowInter();
-                }
-            } else if (myPref.getAdsType().equals("facebook") &&  myPref.isBackAdsEnable()) {
-                InterstitialUtilsFb.loadInterstitial(context,listener);
-            } else {
-                ((Activity) context).finish();
-            }
-        } else {
-            listener.onAdClose(true);
-        }
-
-
-    }
 }
