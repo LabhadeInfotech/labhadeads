@@ -24,7 +24,7 @@ public class InterstitialUtilsFb {
         AdsAccountProvider accountProvider = new AdsAccountProvider(mContext);
 
         if (LabhadeAds.isConnectingToInternet(mContext)) {
-            if (AdConstants.isTimeFinish) {
+            if (AdConstants.isTimeFinishFb) {
 
                 Dialog dialog = AdProgressDialog.show(mContext);
                 InterstitialAd interstitialAd = new InterstitialAd(mContext,accountProvider.getFbInterAds());
@@ -38,13 +38,13 @@ public class InterstitialUtilsFb {
                     @Override
                     public void onInterstitialDismissed(Ad ad) {
                         listener.onAdClose(false);
-                        AdConstants.isTimeFinish = false;
+                        AdConstants.isTimeFinishFb = false;
                         AdConstants.isAdShowing = false;
                         failed = 0;
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                AdConstants.isTimeFinish = true;
+                                AdConstants.isTimeFinishFb = true;
                             }
                         },accountProvider.getAdsTime() * 1000);
                     }

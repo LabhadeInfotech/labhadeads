@@ -72,6 +72,8 @@ public class NativeUtils40 {
                     e.printStackTrace();
                 }
 
+
+
                 if (failed != 2) {
                     failed++;
                     load_native(context, rlNative, space);
@@ -90,6 +92,8 @@ public class NativeUtils40 {
             if (rlNative.getChildCount() > 0) {
                 rlNative.removeAllViews();
             }
+
+
 
             View view = LayoutInflater.from(context).inflate( R.layout.ad_40, null);
             populateNative40(AdConstants.nativeAds, (NativeAdView) view.findViewById(R.id.unified));
@@ -118,6 +122,8 @@ public class NativeUtils40 {
                 if (rlNative.getChildCount() > 0) {
                     rlNative.removeAllViews();
                 }
+
+
 
                 View view = LayoutInflater.from(context).inflate( R.layout.ad_40, null);
                 populateNative40(nativeAd, (NativeAdView) view.findViewById(R.id.unified));

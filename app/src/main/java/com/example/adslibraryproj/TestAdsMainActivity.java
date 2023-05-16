@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,7 +34,7 @@ public class TestAdsMainActivity extends AppCompatActivity {
         LabhadeAds.loadInterstitial(this);
 
         LabhadeAds.showBanner(this,rlBanner);
-        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_350);
+        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_250);
 
         next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {
             startActivity(new Intent(TestAdsMainActivity.this, TestAdsMainActivity2.class));
@@ -42,5 +43,11 @@ public class TestAdsMainActivity extends AppCompatActivity {
         reward.setOnClickListener(v -> LabhadeAds.showRewardAd(this, isFail -> {
             startActivity(new Intent(TestAdsMainActivity.this, TestAdsMainActivity2.class));
         }));
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Toast.makeText(this, ""+intent.getPackage(), Toast.LENGTH_SHORT).show();
     }
 }

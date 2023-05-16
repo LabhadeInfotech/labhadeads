@@ -100,14 +100,14 @@ public class InterstitialUtils {
                     if (dialog != null && dialog.isShowing()) {
                         dialog.dismiss();
                     }
-                    AdConstants.isTimeFinish = false;
+                    AdConstants.clickCount = 0;
                     AdConstants.isAdShowing = false;
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            AdConstants.isTimeFinish = true;
-                        }
-                    }, myPref.getAdsTime() * 1000);
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            AdConstants.isTimeFinish = true;
+//                        }
+//                    }, myPref.getAdsTime() * 1000);
                     listener.onAdClose(true);
                     super.onAdDismissedFullScreenContent();
                 }
@@ -147,13 +147,13 @@ public class InterstitialUtils {
                         if (dialog != null && dialog.isShowing()) {
                             dialog.dismiss();
                         }
-                        AdConstants.isTimeFinish = false;
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                AdConstants.isTimeFinish = true;
-                            }
-                        }, myPref.getAdsTime() * 1000);
+
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                AdConstants.isTimeFinish = true;
+//                            }
+//                        }, myPref.getAdsTime() * 1000);
 
                         if (LabhadeAds.isConnectingToInternet(mContext)) {
                             listener.onAdClose(true);
@@ -178,13 +178,13 @@ public class InterstitialUtils {
                                }
                                AdConstants.interCount++;
                                AdConstants.isAdShowing = false;
-                               AdConstants.isTimeFinish = false;
-                               new Handler().postDelayed(new Runnable() {
-                                   @Override
-                                   public void run() {
-                                       AdConstants.isTimeFinish = true;
-                                   }
-                               }, myPref.getAdsTime() * 1000);
+                               AdConstants.clickCount = 0;
+//                               new Handler().postDelayed(new Runnable() {
+//                                   @Override
+//                                   public void run() {
+//                                       AdConstants.isTimeFinish = true;
+//                                   }
+//                               }, myPref.getAdsTime() * 1000);
                                listener.onAdClose(true);
                            }
 

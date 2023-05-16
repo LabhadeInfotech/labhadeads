@@ -1,5 +1,6 @@
 package com.labhade.adsdk.adUtils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class NativeUtils350 {
 
     public static String mUnitId;
     public static int failed = 0;
+    static NativeAd nativeAd;
 
     public static void load_native(Context context, RelativeLayout rlNative, View space) {
 
@@ -136,6 +138,22 @@ public class NativeUtils350 {
                     if (rlNative.getChildCount() > 0) {
                         rlNative.removeAllViews();
                     }
+                    boolean isDestroyed = false;       // && !(context instanceof MainActivity)
+
+
+                    isDestroyed = ((Activity) context).isDestroyed();
+                    if (NativeUtils.nativeAd != null) {
+                        if (isDestroyed || ((Activity) context).isFinishing() || ((Activity) context).isChangingConfigurations()) {
+                            NativeUtils.nativeAd.destroy();
+                            return;
+                        }
+                    }
+
+                    if (NativeUtils.nativeAd != null) {
+                        NativeUtils.nativeAd.destroy();
+                    }
+
+                    NativeUtils.nativeAd = nativeAd;
 
                     View view;
                     view = LayoutInflater.from(context).inflate(R.layout.ad_350, null);

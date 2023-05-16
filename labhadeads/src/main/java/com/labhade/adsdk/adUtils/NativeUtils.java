@@ -1,5 +1,6 @@
 package com.labhade.adsdk.adUtils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class NativeUtils {
 
     public static String mUnitId;
     static int failed = 0;
+    static NativeAd nativeAd = null;
     public static void load_native(Context context,RelativeLayout rlNative, View space,boolean isBigNative) {
 
         AdsAccountProvider accountProvider = new AdsAccountProvider(context);
@@ -37,7 +39,7 @@ public class NativeUtils {
             @Override
             public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
                 failed = 0;
-                                                // && !(context instanceof MainActivity)
+                boolean isDestroyed = false;       // && !(context instanceof MainActivity)
                 if (!AdConstants.isPreloadedNative) {
                     AdConstants.isPreloadedNative = true;
 
@@ -45,6 +47,20 @@ public class NativeUtils {
                         if (rlNative.getChildCount() > 0) {
                             rlNative.removeAllViews();
                         }
+
+                        isDestroyed = ((Activity) context).isDestroyed();
+                        if (NativeUtils.nativeAd != null) {
+                            if (isDestroyed || ((Activity) context).isFinishing() || ((Activity) context).isChangingConfigurations()) {
+                                NativeUtils.nativeAd.destroy();
+                                return;
+                            }
+                        }
+
+                        if (NativeUtils.nativeAd != null) {
+                            NativeUtils.nativeAd.destroy();
+                        }
+
+                        NativeUtils.nativeAd = nativeAd;
 
                         View view;
                         if (isBigNative) {

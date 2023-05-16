@@ -111,11 +111,14 @@ public class AdsAccountProvider {
     }
 
     public void setAdsTime(int user) {
+        if (AdConstants.clickCount == 1001) {
+            AdConstants.clickCount = user;
+        }
         sharedPreferences.edit().putInt( AdConstants.KEY_ADS_TIME, user ).apply();
     }
 
     public int getAdsTime() {
-        return sharedPreferences.getInt( AdConstants.KEY_ADS_TIME, 1);
+        return sharedPreferences.getInt( AdConstants.KEY_ADS_TIME, 0);
     }
 
     public void setAdsType(String user) {
