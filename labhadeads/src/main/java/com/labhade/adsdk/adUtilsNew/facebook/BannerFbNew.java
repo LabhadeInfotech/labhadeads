@@ -3,7 +3,6 @@ package com.labhade.adsdk.adUtilsNew.facebook;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.facebook.ads.Ad;
@@ -11,10 +10,9 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
-import com.labhade.adsdk.AdConstants;
 
 
-public class Banner {
+public class BannerFbNew {
 
     private AdView adView;
     private RelativeLayout view;
@@ -24,7 +22,7 @@ public class Banner {
 
 
     // Mode : Auto
-    public Banner(Context ctx, String UnitId , RelativeLayout view) {
+    public BannerFbNew(Context ctx, String UnitId , RelativeLayout view) {
         this.ctx = ctx;
         this.unitId = UnitId;
         this.view = view;
@@ -35,12 +33,6 @@ public class Banner {
 
     }
 
-    // Mode : Mannully
-    public Banner(Context ctx,String UnitId) {
-        this.ctx = ctx;
-        this.unitId = UnitId;
-        Init();
-    }
 
     public View getView() {
         return view;

@@ -12,20 +12,20 @@
     <com.google.android.gms.ads.nativead.NativeAdView
         android:id="@+id/unified_native_view"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="120dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_gravity="center"
             android:background="#FFFFFF"
             android:orientation="horizontal">
 
             <com.google.android.gms.ads.nativead.MediaView
                 android:id="@+id/ad_media"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:background="#979595" />
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:background="#E4E2E2" />
 
             <View
                 android:layout_width="1dp"
@@ -70,7 +70,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="3dp"
-                                android:background="#FFAA00"
+                                android:background="#979595"
                                 android:gravity="center|top|left"
                                 android:paddingLeft="2dp"
                                 android:paddingRight="2dp"
@@ -84,6 +84,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:maxLines="1"
+                                android:ellipsize="marquee"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="3dp"
                                 android:text="ad_headline"
@@ -98,6 +99,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:maxLines="1"
+                            android:ellipsize="marquee"
                             android:paddingLeft="5dp"
                             android:paddingRight="3dp"
                             android:text="ad_body"
@@ -168,6 +170,8 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center|bottom"
                     android:layout_marginLeft="5dp"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/button_bg"
                     android:gravity="center"

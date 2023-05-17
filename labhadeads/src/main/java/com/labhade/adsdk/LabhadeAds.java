@@ -27,6 +27,7 @@ import com.labhade.adsdk.adUtils.NativeUtilsFb;
 import com.labhade.adsdk.adUtils.RewardedUtils;
 import com.labhade.adsdk.adUtilsNew.admob.BannerAdmub;
 import com.labhade.adsdk.adUtilsNew.admob.InterstitialAdmub;
+import com.labhade.adsdk.adUtilsNew.facebook.BannerFbNew;
 import com.labhade.adsdk.aditerface.Banner;
 import com.labhade.adsdk.aditerface.Interstitial;
 
@@ -68,16 +69,16 @@ public class LabhadeAds {
         adsAccountProvider.setRewardAds1("/6499/example/rewarded");
         adsAccountProvider.setNativeAds1("/6499/example/native");
 
-        adsAccountProvider.setFbBannerAds("/6499/example/banner");
-        adsAccountProvider.setFbInterAds("/6499/example/interstitial");
-        adsAccountProvider.setFbNativeAds("/6499/example/native");
+        adsAccountProvider.setFbBannerAds("IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID");
+        adsAccountProvider.setFbInterAds("IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID");
+        adsAccountProvider.setFbNativeAds("IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID");
 
         adsAccountProvider.setPreload("pre");
 
         adsAccountProvider.setAppOpenEnable(true);
         adsAccountProvider.setRewardEnable(true);
         adsAccountProvider.setInterEnable(true);
-        adsAccountProvider.setAdsTime(3);
+        adsAccountProvider.setAdsTime(0);
         adsAccountProvider.setBackAds(true);
     }
 
@@ -159,7 +160,11 @@ public class LabhadeAds {
                 BannerUtils.loadAndShowAds(context, bannerContainer);
             }
         } else if (myPref.getAdsType().equals("facebook")) {
-            BannerUtilsFb.show_banner(context, bannerContainer);
+            if (myPref.getPreload().equals("pre")) {
+                new BannerFbNew(context,myPref.getFbBannerAds(),bannerContainer);
+            } else {
+                BannerUtilsFb.show_banner(context, bannerContainer);
+            }
         } else {
             bannerContainer.getLayoutParams().height = 0;
         }
@@ -169,43 +174,23 @@ public class LabhadeAds {
         AdsAccountProvider myPref = new AdsAccountProvider(context);
 
         if (myPref.getAdsType().equals("admob")) {
-            if (myPref.getPreload().equals("pre")) {
-                if (adTemplate.equals(AdTemplate.NATIVE_350)) {
-                    NativeUtils350.showNative(context, nativeContainer, space);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_300)) {
-                    NativeUtils.showNative(context, nativeContainer, space, true);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_450)) {
-                    NativeUtils450.loadNative450(space, nativeContainer, (Activity) context);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_250)) {
-                    NativeAdUtils250.loanNative250(space, nativeContainer, (Activity) context);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_40)) {
-                    NativeUtils40.showNative(context, nativeContainer, space);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_60)) {
-                    NativeUtils60.showNative(context, nativeContainer, space);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_50)) {
-                    NativeUtils50.showNative(context, nativeContainer, space);
-                } else {
-                    NativeUtils.showNative(context, nativeContainer, space, false);
-                }
-            } else {
-                if (adTemplate.equals(AdTemplate.NATIVE_350)) {
-                    NativeUtils350.loadAndShowAds(context, nativeContainer, space);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_300)) {
-                    NativeUtils.loadAndShowAds(context, nativeContainer, space, true);
-                }else if (adTemplate.equals(AdTemplate.NATIVE_450)) {
-                    NativeUtils450.loadNative450(space, nativeContainer, (Activity) context);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_250)) {
-                    NativeAdUtils250.loanNative250(space, nativeContainer, (Activity) context);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_40)) {
-                    NativeUtils40.loadAndShowAds(context, nativeContainer, space);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_60)) {
-                    NativeUtils60.loadAndShowAds(context, nativeContainer, space);
-                } else if (adTemplate.equals(AdTemplate.NATIVE_50)) {
-                    NativeUtils50.loadAndShowAds(context, nativeContainer, space);
-                } else {
-                    NativeUtils.loadAndShowAds(context, nativeContainer, space, false);
 
-                }
+            if (adTemplate.equals(AdTemplate.NATIVE_350)) {
+                NativeUtils350.showNative(context, nativeContainer, space);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_300)) {
+                NativeUtils.showNative(context, nativeContainer, space, true);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_450)) {
+                NativeUtils450.loadNative450(space, nativeContainer, (Activity) context);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_100)) {
+                NativeUtils.showNative(context, nativeContainer, space, false);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_40)) {
+                NativeUtils40.showNative(context, nativeContainer, space);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_60)) {
+                NativeUtils60.showNative(context, nativeContainer, space);
+            } else if (adTemplate.equals(AdTemplate.NATIVE_50)) {
+                NativeUtils50.showNative(context, nativeContainer, space);
+            } else {
+                NativeAdUtils250.loanNative250(space, nativeContainer, (Activity) context);
             }
 
         } else if (myPref.getAdsType().equals("facebook")) {

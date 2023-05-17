@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/tools"
     app:cardCornerRadius="10dp"
     app:cardElevation="3dp"
+    android:padding="2dp"
     app:cardUseCompatPadding="true"
     app:ignore="NamespaceTypo">
 
@@ -18,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:layout_gravity="center"
-            android:background="#FFFFFF"
             android:orientation="vertical">
 
             <com.google.android.gms.ads.nativead.MediaView
@@ -63,7 +63,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
-                            android:background="#FFAA00"
+                            android:background="#979595"
                             android:gravity="center|top|left"
                             android:paddingLeft="2dp"
                             android:paddingRight="2dp"
@@ -90,6 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:maxLines="1"
+                        android:ellipsize="marquee"
                         android:paddingLeft="5dp"
                         android:paddingRight="3dp"
                         android:textColor="#606060"
@@ -156,10 +157,12 @@
                     android:id="@+id/ad_call_to_action"
                     android:layout_width="130dp"
                     android:layout_height="50dp"
+                    android:ellipsize="marquee"
+                    android:maxLines="1"
                     android:layout_marginRight="3dp"
                     android:background="@drawable/button_bg"
                     android:gravity="center"
-                    android:text="Install"
+                    android:text=""
                     android:textColor="#ffffff"
                     android:textSize="14sp" />
             </LinearLayout>

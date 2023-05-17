@@ -39,6 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
+                    android:ellipsize="marquee"
                     android:textStyle="bold"
                     android:textColor="#000000" />
 
@@ -47,6 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txt_headline"
+                    android:ellipsize="marquee"
                     android:maxLines="1"
                     android:textColor="#5A5A5A"
                     android:textSize="11dp" />
@@ -107,6 +109,7 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="5dp"
+                android:ellipsize="marquee"
                 android:maxLines="1"
                 android:textColor="#ffffff"
                 android:textStyle="bold"

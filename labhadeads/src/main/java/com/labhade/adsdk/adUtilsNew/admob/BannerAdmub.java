@@ -16,7 +16,6 @@ import com.google.android.gms.ads.LoadAdError;
 import com.labhade.adsdk.AdsAccountProvider;
 
 public class BannerAdmub {
-    private AdRequest Request;
     private AdView view;
     RelativeLayout relView;
     String mUnitId = "oa";
@@ -37,23 +36,33 @@ public class BannerAdmub {
     }
 
     void requestView() {
-        this.view = new AdView(ctx);
-        view.setAdSize(AdSize.BANNER);
-        view.setAdUnitId(mUnitId);
-        view.setAdListener(getAdListener());
+
+        try {
+            view = new AdView(ctx);
+            view.setAdSize(AdSize.BANNER);
+            view.setAdUnitId(mUnitId);
+            view.setAdListener(getAdListener());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     void addView() {
-        if (relView.getChildCount() > 0) {
-            relView.removeAllViews();
-        }
-        relView.addView(view);
-    }
 
-    public BannerAdmub() {
+        try {
+            if (relView.getChildCount() > 0) {
+                relView.removeAllViews();
+            }
+            relView.addView(view);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private AdListener getAdListener() {
+
         AdListener adListener = new AdListener() {
 
             @Override
@@ -83,14 +92,12 @@ public class BannerAdmub {
     }
 
     public void show() {
-        view.loadAd(getRequest());
+        try {
+            view.loadAd(getRequest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public AdView getView() {
-        return view;
-    }
-
-    public void setView(View view) {
-        this.view = (AdView) view;
-    }
 }

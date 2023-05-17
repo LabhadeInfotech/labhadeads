@@ -115,6 +115,8 @@
                     android:layout_height="45dp"
                     android:textColor="@android:color/white"
                     android:textSize="12dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:background="@drawable/button_bg"
                     android:backgroundTint="?attr/tabRippleColor"
                     app:layout_constraintEnd_toEndOf="parent"
