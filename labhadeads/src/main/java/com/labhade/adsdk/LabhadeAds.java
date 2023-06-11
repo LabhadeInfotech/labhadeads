@@ -85,7 +85,7 @@ public class LabhadeAds {
 
     public static void loadInterstitial(Context mContext) {
         AdsAccountProvider myPref = new AdsAccountProvider(mContext);
-        if (myPref.getAdsType().equals("admob") && myPref.isInterEnable() && myPref.getAdsType().equals("pre")) {
+        if (myPref.getAdsType().equals("admob") && myPref.isInterEnable() && myPref.getPreload().equals("pre")) {
             if (AdConstants.clickCount == myPref.getAdsTime()) {
                 if (InterstitialUtils.mInterstitialAd == null) {
                     InterstitialUtils.loadInterstitial(mContext);

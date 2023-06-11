@@ -19,6 +19,7 @@ public class TestAdsMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LabhadeAds.setTestMode(this);
         setContentView(R.layout.activity_main);
 
         LabhadeAds.InitializeAds(this);
@@ -29,7 +30,6 @@ public class TestAdsMainActivity extends AppCompatActivity {
         next = findViewById(R.id.next);
         reward = findViewById(R.id.btn_click_here);
 
-        LabhadeAds.setTestMode(this);
 
         LabhadeAds.loadInterstitial(this);
 

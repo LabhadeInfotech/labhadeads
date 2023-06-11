@@ -1,7 +1,12 @@
 package com.labhade.adsdk.adUtils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.WindowMetrics;
+import android.widget.ActionMenuView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -91,8 +96,14 @@ public class BannerUtils {
         AdsAccountProvider accountProvider = new AdsAccountProvider(context);
         mUnitId = accountProvider.getBannerAds1();
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
+
         AdView adView = new AdView(context);
-        adView.setAdSize(AdSize.BANNER);
+        adView.setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context,width));
         adView.setAdUnitId(mUnitId);
         adView.setAdListener(new AdListener() {
             @Override
@@ -125,6 +136,5 @@ public class BannerUtils {
 
         adView.loadAd(new AdRequest.Builder().build());
     }
-
 
 }

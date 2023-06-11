@@ -35,4 +35,8 @@
 
     <include layout="@layout/include_banner_view" />
 
+    <com.labhade.adsdk.adViews.BannerAdView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"/>
+
 </LinearLayout>
