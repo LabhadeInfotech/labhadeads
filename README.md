@@ -15,7 +15,7 @@ Step 1. Add the JitPack repository to your build file
 Step 2. Add the dependency
 
         dependencies {
-                   implementation 'com.github.LabhadeInfotech:labhadeads:2.0.5'
+                   implementation 'com.github.LabhadeInfotech:labhadeads:2.0.6'
                   }       
 
  ============= Themes ==============
