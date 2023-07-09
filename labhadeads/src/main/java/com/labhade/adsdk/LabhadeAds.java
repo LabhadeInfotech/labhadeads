@@ -176,28 +176,28 @@ public class LabhadeAds {
         if (myPref.getAdsType().equals("admob")) {
 
             if (adTemplate.equals(AdTemplate.NATIVE_350)) {
-                NativeUtils350.showNative(context, nativeContainer, space);
+                NativeUtils350.loadAndShowAds(context, nativeContainer, space);
             } else if (adTemplate.equals(AdTemplate.NATIVE_300)) {
-                NativeUtils.showNative(context, nativeContainer, space, true);
+                NativeUtils.loadAndShowAds(context, nativeContainer, space, true);
             } else if (adTemplate.equals(AdTemplate.NATIVE_450)) {
                 NativeUtils450.loadNative450(space, nativeContainer, (Activity) context);
             } else if (adTemplate.equals(AdTemplate.NATIVE_100)) {
-                NativeUtils.showNative(context, nativeContainer, space, false);
+                NativeUtils.loadAndShowAds(context, nativeContainer, space, false);
             } else if (adTemplate.equals(AdTemplate.NATIVE_40)) {
-                NativeUtils40.showNative(context, nativeContainer, space);
+                NativeUtils40.loadAndShowAds(context, nativeContainer, space);
             } else if (adTemplate.equals(AdTemplate.NATIVE_60)) {
-                NativeUtils60.showNative(context, nativeContainer, space);
+                NativeUtils60.loadAndShowAds(context, nativeContainer, space);
             } else if (adTemplate.equals(AdTemplate.NATIVE_50)) {
-                NativeUtils50.showNative(context, nativeContainer, space);
+                NativeUtils50.loadAndShowAds(context, nativeContainer, space);
             } else {
                 NativeAdUtils250.loanNative250(space, nativeContainer, (Activity) context);
             }
 
         } else if (myPref.getAdsType().equals("facebook")) {
             if (adTemplate.equals(AdTemplate.NATIVE_300)) {
-                NativeUtilsFb.showNativeFb(context, nativeContainer, space, true);
+                NativeUtilsFb.loadFbNative(context, nativeContainer, space, true);
             } else if (adTemplate.equals(AdTemplate.NATIVE_100)) {
-                NativeUtilsFb.showNativeFb(context, nativeContainer, space, false);
+                NativeUtilsFb.loadFbNative(context, nativeContainer, space, false);
             }
         } else {
             if (!(space instanceof ImageView)) {

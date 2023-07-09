@@ -29,8 +29,6 @@ public class BannerAdView extends RelativeLayout {
             BannerUtils.loadAndShowAds(context, this);
         } else if (myPref.getAdsType().equals("facebook")) {
             new BannerFbNew(context,myPref.getFbBannerAds(),this);
-        }else {
-            this.setVisibility(GONE);
         }
 
     }

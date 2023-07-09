@@ -61,29 +61,21 @@ public class NativeUtilsFb {
             @Override
             public void onAdLoaded(Ad ad) {
                 failed = 0;
-                if (!AdConstants.isPreloadedFbNative) {
-                    AdConstants.isPreloadedFbNative = true;
-
-                    try {
-                        if (nativeAdLayout.getChildCount() > 0) {
-                            nativeAdLayout.removeAllViews();
-                        }
-
-                        space.setVisibility(View.GONE);
-                        nativeAdLayout.setVisibility(View.VISIBLE);
-                    }catch (Exception e) {
-                        e.printStackTrace();
-                        return;
+                try {
+                    if (nativeAdLayout.getChildCount() > 0) {
+                        nativeAdLayout.removeAllViews();
                     }
 
-                    inflateNativeAd(nativeAd, context, nativeAdLayout,isBigNative);
-
-                    loadFbNative(context, nativeAdLayout, space, isBigNative);
-                } else {
-                    AdConstants.nativeAdFb = nativeAd;
-                    Log.e("NATIVE_ADS---->", "showNative: "+ AdConstants.nativeAdFb);
-
+                    space.setVisibility(View.GONE);
+                    nativeAdLayout.setVisibility(View.VISIBLE);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    return;
                 }
+
+                inflateNativeAd(nativeAd, context, nativeAdLayout,isBigNative);
+
+//                loadFbNative(context, nativeAdLayout, space, isBigNative);
             }
 
             @Override

@@ -35,7 +35,7 @@ public class RewardedUtils {
                         if (dialog != null && dialog.isShowing()) {
                             dialog.dismiss();
                         }
-                        rewardInterface.onAdClose(false);
+                        rewardInterface.onAdClose(true);
                     }
 
                     @Override
@@ -79,7 +79,7 @@ public class RewardedUtils {
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
-                rewardCallback.onAdClose(false);
+                rewardCallback.onAdClose(true);
             }
 
             @Override
