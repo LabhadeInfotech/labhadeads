@@ -73,7 +73,7 @@ public class LabhadeAds {
         adsAccountProvider.setFbInterAds("IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID");
         adsAccountProvider.setFbNativeAds("IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID");
 
-        adsAccountProvider.setPreload("pre");
+        adsAccountProvider.setPreload("load");
 
         adsAccountProvider.setAppOpenEnable(true);
         adsAccountProvider.setRewardEnable(true);

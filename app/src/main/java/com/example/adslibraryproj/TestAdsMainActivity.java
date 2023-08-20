@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.labhade.adsdk.AdProgressDialog;
 import com.labhade.adsdk.LabhadeAds;
 
 public class TestAdsMainActivity extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class TestAdsMainActivity extends AppCompatActivity {
         LabhadeAds.loadInterstitial(this);
 
         LabhadeAds.showBanner(this,rlBanner);
-        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_250);
+        LabhadeAds.showNative(this,rlNative,tvSpace, LabhadeAds.AdTemplate.NATIVE_100);
 
         next.setOnClickListener(v -> LabhadeAds.showInterstitial(this, isFail -> {
             startActivity(new Intent(TestAdsMainActivity.this, TestAdsMainActivity2.class));
