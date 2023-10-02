@@ -103,7 +103,7 @@ public class BannerUtils {
 
 
         AdView adView = new AdView(context);
-        adView.setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context,width));
+        adView.setAdSize(AdSize.BANNER);
         adView.setAdUnitId(mUnitId);
         adView.setAdListener(new AdListener() {
             @Override

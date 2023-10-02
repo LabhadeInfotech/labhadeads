@@ -12,7 +12,6 @@ import com.labhade.adsdk.adUtils.InterstitialUtils;
 
 public  class AdConstants {
 //    public static boolean isTimeFinish = true;
-    public static boolean isTimeFinishFb = true;
     public static int clickCount = 1001;
     public static final String KEY_OPEN_ADS = "key_open_ads";
     public static final String KEY_NATIVE1 = "key_native_ads1";
